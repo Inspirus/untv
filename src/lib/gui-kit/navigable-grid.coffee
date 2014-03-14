@@ -88,6 +88,7 @@ class NavigableGrid extends EventEmitter
           # track focus
           @last_item    = ($ event.target).closest("li").addClass @selected_item_classname
           @last_item_id = @last_item.attr "data-navigrid-id"
+          @emit "item_focused", @last_item
 
     # temp hack for extra ul
     do @pruneRows

@@ -3,6 +3,10 @@
     h2 
       | #{MovieTitleClean}
       span.mpaa #{AgeRating}
+    .screens
+      img(src="#{MediumScreenshot1}")
+      //- img(src="#{MediumScreenshot2}")
+      //- img(src="#{MediumScreenshot3}")
     ul
       li
         strong Directed by: 
@@ -16,5 +20,3 @@
     div.movie-help.
       Press <strong>select</strong> to play. Press <strong>back</strong> to dismiss.
 .loader
-//- .movie-screen.blurred-less
-//-   img(src="#{MediumScreenshot2}")

@@ -1,0 +1,19 @@
+if episodes.length
+  - var show_title = episodes[0].title
+  h2 #{show_title}
+  ul.episodes
+    - var last_episode_num = 0
+    for episode in episodes
+      - var torrents = JSON.stringify(episode.torrents)
+      if last_episode_num !== episode.episode.number
+        - last_episode_num = episode.episode.number
+        li(data-torrents="#{torrents}")
+          strong.
+            Season #{episode.season} - 
+            Episode #{episode.episode.number}
+          if episode.episode.title
+            strong : #{episode.episode.title}
+else
+  p.sorry.
+    Sorry, there aren't any episodes currently available for this TV Show. 
+    Try again tommorow!

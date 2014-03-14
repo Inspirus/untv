@@ -92,13 +92,11 @@ header.extension-header {
   z-index: 9;
   overflow: hidden;
   display: none;
-  background: #000;
+  background: rgba(0,0,0,0.95);
   width: 800px;
   height: 400px;
   margin: -200px 0 0 -400px;
-  border: 1px solid #fff;
-  border-radius: 12px;
-  box-shadow: 0 0 12px #fff;
+  border: 1px dashed rgba(255,255,255,0.5);
 }
 
 .movie-help {
@@ -117,6 +115,16 @@ header.extension-header {
   background: url("../../../assets/images/loader.gif") center center no-repeat;
   background-size: 64px;
   left: auto;
+}
+
+#torrent-details .screens {
+  width: 320px;
+  float: left;
+  margin: 0 24px;
+}
+
+#torrent-details .screens img {
+  width: 320px;
 }
 
 #torrent-details.loading .loader {

@@ -1,0 +1,4 @@
+li.search(data-list-action="search") Search
+for show in shows
+  if show.id
+    li(data-show-id="#{show.id}", data-list-action="loadShow") #{show.title}

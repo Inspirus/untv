@@ -8,9 +8,7 @@ stream them directly to the global player instance
 
 fs            = require "fs"
 TorrentSearch = require "./torrent-search"
-TorrentStream = require "./torrent-stream"
 torrents      = new TorrentSearch()
-torrent       = new TorrentStream()
 localStorage  = window.localStorage
 
 ###
@@ -22,7 +20,7 @@ do torrents.latest
 Initialize Extension 
 ###
 module.exports = (env) ->
-
+  torrent    = env.torrentStreamer
   config     = env.manifest.config
   disclaimer = (fs.readFileSync "#{__dirname}/disclaimer.html").toString()
   
@@ -207,8 +205,20 @@ module.exports = (env) ->
 
       torrent.on "error", (err) ->
         # show error message
-        notifier.notify manifest.name, err, yes
+        env.notifier.notify env.manifest.name, err, yes
         # do grid.giveFocus
+
+      torrent.on "timeout", ->
+        (env.gui.$ "#progress-loader").fadeOut(200)
+        env.notifier.notify env.manifest.name, "Connection timed out.", true
+
+      torrent.on "loading", ->
+        # show loader
+        (env.gui.$ "#progress-bar div").css width: "0%"
+        (env.gui.$ "#progress-loader").fadeIn(200)
+
+      torrent.on "progress", (percent) -> 
+        (env.gui.$ "#progress-bar div").css width: "#{percent.loaded}%"
 
       torrent.on "ready", (file_info) ->
         # check codec support and open stream
@@ -216,9 +226,9 @@ module.exports = (env) ->
 
       torrent.on "stream", (stream_info) ->
         # pass `stream_url` to the player and show
+        (env.gui.$ "#progress-loader").fadeOut(200)
         url = stream_info.stream_url
         env.player.play url, "video"
-        env.player.on "player:progress", (progress) -> 
 
     env.remote.once "go:select", playMovie
     env.remote.once "go:back", dismissMovie

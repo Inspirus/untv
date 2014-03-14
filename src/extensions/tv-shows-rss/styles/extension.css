@@ -1,0 +1,83 @@
+/*
+** UNTV - tv-show-rss styles
+** Author: Gordon Hall
+*/
+
+@-webkit-keyframes select_item {
+  from {
+    -webkit-transform: scale(0.9);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
+}
+
+#shows-menu {
+  width: 30%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#shows-menu h2,
+#today-schedule h2,
+#episode-list h2 {
+  margin: 0;
+  padding: 12px;
+  text-shadow: 0 3px 5px #000;
+  font-family: UbuntuCondensed;
+  font-size: 34px;
+}
+
+#today-schedule,
+#episode-list {
+  width: 70%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.5);
+  box-shadow: inset 0 8px 22px #000;
+  z-index: 8;
+}
+
+#today-schedule.loading,
+#episode-list.loading {
+  background-image: url("../../../assets/images/loader.gif");
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+#episode-list {
+  display: none;
+}
+
+#shows-menu ul {
+  opacity: 0.75;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#shows-menu ul.navilist-focused {
+  opacity: 1;
+}
+
+#shows-menu ul li {
+  padding: 10px 24px;
+  font-size: 28px;
+  -webkit-transform: scale(0.9);
+  opacity: 0.9;
+  font-family: UbuntuCondensed;
+  text-shadow: 2px 3px 6px #000;
+}
+
+#shows-menu ul li.navilist-selected {
+  font-weight: bold;
+  -webkit-transform: scale(1);
+  opacity: 1;
+  -webkit-animation: select_item .2s;
+  background: url("../../../assets/images/tick-white.svg") left center no-repeat;
+  background-size: 10px 20px;
+}

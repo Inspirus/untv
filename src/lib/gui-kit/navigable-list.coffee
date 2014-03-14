@@ -43,6 +43,7 @@ class NavigableList extends EventEmitter
     ($ "li", @scroller).bind "mouseover", (event) =>
       item = $ event.target
       @giveFocus item.index()
+      @emit "item_focused", item
 
     @scroller.bind "mouseover", (event) => @giveFocus()
     @scroller.bind "mouseout", (event) => @releaseFocus()

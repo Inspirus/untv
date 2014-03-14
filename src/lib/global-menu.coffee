@@ -17,6 +17,7 @@ dns                = require "dns"
 {SettingsRegistry} = require "./settings-registry"
 common             = require "./common"
 hat                = require "hat"
+TorrentStream      = require "./torrent-stream"
 
 class GlobalMenu extends EventEmitter
 
@@ -143,6 +144,8 @@ class GlobalMenu extends EventEmitter
       stylesheet.data "type", type
       ($ "head").append stylesheet
 
+  torrentStreamer: new TorrentStream()
+
   createExtensionEnvironment: (overrides) =>
     env = 
       manifest: null
@@ -151,6 +154,7 @@ class GlobalMenu extends EventEmitter
       notifier: @notifier
       view: null
       gui: gui
+      torrentStreamer: @torrentStreamer
     # apply overrides
     env = env extends overrides
     if env.manifest and env.manifest.privileged
@@ -249,7 +253,7 @@ class GlobalMenu extends EventEmitter
       duration: @scroll_speed
       complete: => 
         @ready = yes
-        @remote.playEventSound "keypress"
+        # @remote.playEventSound "keypress"
         do ($ "style##{@scroll_keyframe_name}").remove
         list.removeAttr "style" # hack to support dynamic keyframe overwrite
         list.css "margin-top", "#{pixels}px"
@@ -304,6 +308,8 @@ class GlobalMenu extends EventEmitter
     # this is to get rid of listeners from previously loaded
     # extensions
     do @remote.removeAllListeners
+    do @torrentStreamer.removeAllListeners
+    ($ "#progress-loader").hide()
     # re-subscribe the menu so that we always have access to it
     do @subscribe
     # no show the rendered extension and hide the menu

@@ -13,13 +13,16 @@ class ShowFeed extends EventEmitter
     @shows = []
     @getShows()
 
+  getSchedule: (callback) =>
+    @getFeed "all", callback
+
   getFeed: (showId, callback) =>
-    show = @getShowById showId
+    show = @getShowById(showId) or {}
     self = this
 
     if show.episodes then return callback null, show.episodes
 
-    show.feed     = request "http://showrss.info/feeds/#{show.id}.rss"
+    show.feed     = request "http://showrss.info/feeds/#{showId}.rss"
     show.parser   = new FeedParser()
     show.episodes = []
 
@@ -62,6 +65,7 @@ class ShowFeed extends EventEmitter
 
   getShows: =>
     request "http://showrss.info/?cs=browse", (err, data) =>
+      if err then return @emit "error", err
       $    = cheerio.load(data.body);
       self = this
 
@@ -84,7 +88,7 @@ class ShowFeed extends EventEmitter
     if magnet_uri.length is 0 then throw "broken magnet link"
     magnet_uri = magnet_uri.toUpperCase()
     return [
-      "https://torcache.net/torrent/#{magnet_uri}.torrent"
+      "http://torcache.net/torrent/#{magnet_uri}.torrent"
       "https://zoink.it/torrent/#{magnet_uri}.torrent"
     ]
 
