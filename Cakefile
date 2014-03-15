@@ -9,7 +9,6 @@ path          = require "path"
 {exec, spawn} = require "child_process"
 readline      = require "readline"
 about         = JSON.parse fs.readFileSync "#{__dirname}/package.json"
-
 ################################################################################
 ### Globals
 ################################################################################
@@ -26,7 +25,10 @@ platforms  =
     "#{__dirname}"/bin/#{current_build}/darwin32/nw.app/Contents/MacOS/node-webkit
   """
   win32: path.normalize """
-    "#{__dirname}"/bin/#{current_build}/win32/nw
+    "#{__dirname}/bin/#{current_build}/win32/nw"
+  """
+  win3264: path.normalize """
+    "#{__dirname}/bin/#{current_build}/win32/nw"
   """
 
 downloads =
@@ -34,6 +36,7 @@ downloads =
   linux64: "https://file.ac/Ayxb2UM40pg/linux64.tar.gz"
   darwin32: "https://file.ac/8v7SRJ7Xa6A/darwin32.tar.gz"
   win32: "https://file.ac/0FNox66LTbA/win32.zip" 
+  win3264: "https://file.ac/0FNox66LTbA/win32.zip" 
 
 ################################################################################
 ### Options
