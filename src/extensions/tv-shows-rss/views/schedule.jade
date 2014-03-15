@@ -5,16 +5,14 @@ if shows.length
       if JSON.stringify(last_show) !== JSON.stringify(show) 
         - last_show = show
         - var torrents = JSON.stringify(show.torrents)
+        if show.season && show.episode.number
           li(data-torrents="#{torrents}") 
             strong #{show.title}
-            em
-              if show.season
-                | Season #{show.season}
-              if show.episode.number
-                | - Episode #{show.episode.number}
+            em.
+                Season #{show.season}
+                - Episode #{show.episode.number}
             if show.episode.title
-              | : #{show.episode.title}
+              | "#{show.episode.title}"
 else
   p.sorry.
-    Sorry, there aren't any new shows available today. 
-    Try again tommorow!
+    Sorry, there aren't any new shows available today. <br />

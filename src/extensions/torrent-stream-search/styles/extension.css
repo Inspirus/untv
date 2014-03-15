@@ -117,10 +117,14 @@ header.extension-header {
   left: auto;
 }
 
+#torrent-details ul strong {
+  display: block;
+}
+
 #torrent-details .screens {
   width: 320px;
   float: left;
-  margin: 0 24px;
+  margin: 0 24px 12px 24px;
 }
 
 #torrent-details .screens img {
@@ -168,6 +172,7 @@ header.extension-header {
   font-size: 52px;
   margin: 12px 24px;
   text-shadow: 0 0 12px #000;
+  font-family: UbuntuCondensed;
 }
 
 .movie-info .mpaa {
@@ -198,6 +203,7 @@ header.extension-header {
   line-height: 24px;
   font-size: 18px;
   font-style: italic;
+  clear: both;
 }
 
 #torrent-menu {

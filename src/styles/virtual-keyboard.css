@@ -18,7 +18,7 @@
   left: 0;
   right: 0;
   background: rgba(0,0,0,0.8);
-  border-bottom: 1px solid rgba(255,255,255,0.4);
+  border-bottom: 1px dashed rgba(255,255,255,0.4);
   color: #fff;
   box-shadow: 0 12px 12px rgba(0,0,0,0.5);
 }
@@ -55,16 +55,15 @@
   bottom: 0;
   left: 0;
   right: 0;
-  border-bottom: 1px solid #fff;
   background: rgba(0,0,0,0.8);
-  border-top: 1px solid rgba(255,255,255,0.4);
+  border-top: 1px dashed rgba(255,255,255,0.4);
   box-shadow: 0 -12px 12px rgba(0,0,0,0.5);
 }
 
 .vkeyboard dl {
-  border-top: 1px solid #fff;
+  border-top: 1px dashed rgba(255,255,255,0.4);
   padding: 0;
-  border-left: 1px solid #fff;
+  border-left: 1px dashed rgba(255,255,255,0.4);
   width: 490px;
   margin: auto;
 }
@@ -80,7 +79,7 @@
   color: #fff;
   font-size: 24px;
   padding: 12px;
-  border-right: 1px solid #fff;
+  border-right: 1px dashed rgba(255,255,255,0.4);
 }
 
 .vkeyboard .focused {
@@ -107,13 +106,13 @@
 }
 
 .vkeyboard .delete.focused {
-  background-size: 24px;
   background: url("../assets/images/icons/delete-active.svg") center center no-repeat #fff;
+  background-size: 24px;
 }
 
 .vkeyboard .return.focused {
-  background-size: 24px;
   background: url("../assets/images/icons/confirm-active.svg") center center no-repeat #fff;
+  background-size: 24px;
 }
 
 .vkeyboard .space {

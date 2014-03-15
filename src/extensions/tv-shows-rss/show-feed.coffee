@@ -7,11 +7,16 @@ Author: Gordon Hall
 FeedParser     = require "feedparser"
 request        = require "request"
 cheerio        = require "cheerio"
+localStorage   = window.localStorage
 
 class ShowFeed extends EventEmitter
   constructor: (showId) ->
-    @shows = []
+    cache  = localStorage.getItem("tvrss:shows")
+    @shows = if cache then JSON.parse(cache) else []
     @getShows()
+
+  syncShowStorage: =>
+    localStorage.setItem "tvrss:shows", JSON.stringify @shows
 
   getSchedule: (callback) =>
     @getFeed "all", callback
@@ -41,8 +46,9 @@ class ShowFeed extends EventEmitter
       while item = do stream.read
         show.episodes.push self.parse item 
         
-    show.parser.on "end", ->
+    show.parser.on "end", =>
       callback null, show.episodes
+      @syncShowStorage()
 
   parse: (item) =>
     data          = {} 
@@ -64,16 +70,26 @@ class ShowFeed extends EventEmitter
     return null
 
   getShows: =>
+    # served_from_cache = no
+
+    # if @shows.length
+    #   @emit "ready", @shows 
+    #   served_from_cache = yes
+
     request "http://showrss.info/?cs=browse", (err, data) =>
       if err then return @emit "error", err
-      $    = cheerio.load(data.body);
-      self = this
+      $      = cheerio.load(data.body);
+      self   = this
+      @shows = []
 
       ($ "#browse_show option").each ->
         self.shows.push 
           id: ($ this).val()
           title: ($ this).html()
       
+      @syncShowStorage()
+
+      # unless served_from_cache
       @emit "ready", @shows
 
   getTorrentURLFromMagnet: (magnet_uri) ->

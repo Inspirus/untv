@@ -47,6 +47,7 @@
   background-image: url("../../../assets/images/loader.gif");
   background-position: center center;
   background-repeat: no-repeat;
+  background-size: 140px;
 }
 
 #episode-list {
@@ -71,6 +72,9 @@
   opacity: 0.9;
   font-family: UbuntuCondensed;
   text-shadow: 2px 3px 6px #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #shows-menu ul li.navilist-selected {
@@ -80,4 +84,52 @@
   -webkit-animation: select_item .2s;
   background: url("../../../assets/images/tick-white.svg") left center no-repeat;
   background-size: 10px 20px;
+}
+
+.episodes {
+  list-style-type: none;
+  padding: 12px 24px;
+}
+
+.episodes li {
+  padding: 8px;
+  font-size: 20px;
+  -webkit-transform: scale(0.9);
+  opacity: 0.9;
+  overflow: hidden;
+}
+
+.episodes li.navilist-selected {
+  -webkit-transform: scale(1);
+  opacity: 1;
+  -webkit-animation: select_item .2s;
+  border-left: 3px solid #fff;
+}
+
+.episodes li strong {
+  display: block;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px dashed rgba(255,255,255,0.5);
+}
+
+.episodes li em {
+  display: block;
+  float: right;
+  font-style: normal;
+}
+
+.sorry {
+  position: absolute;
+  width: 480px;
+  font-size: 22px;
+  text-align: center;
+  background: url("../../../assets/images/icons/sorry.svg") top center no-repeat;
+  background-size: 120px;
+  padding-top: 120px;
+  left: 50%;
+  top: 50%;
+  margin: -111px 0 0 -240px;
+  text-shadow: 0 2px 4px #000;
+  line-height: 34px;
 }
