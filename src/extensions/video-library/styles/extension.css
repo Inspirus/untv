@@ -73,6 +73,7 @@ header.extension-header {
 
 #movie-files.loading {
   background: url("../../../assets/images/loader.gif") center center no-repeat rgba(0,0,0,0.25);
+  background-size: 140px;
 }
 
 #movie-files ul {
