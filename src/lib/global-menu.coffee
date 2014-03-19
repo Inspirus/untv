@@ -91,6 +91,7 @@ class GlobalMenu extends EventEmitter
       throw new Error "A `name` property must be specified"
     spec.id = hat()
     @actions.push spec
+    do @render
 
   fireAction: (id) =>
     if not id then throw new Error "No action `id` specified"

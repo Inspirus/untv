@@ -17,7 +17,7 @@ module.exports = [
     description: "Toggle Between Window Mode and Fullscreen"
     handler: ->
       win = gui.Window.get()
-      win.toggleFullscreen()
+      win.toggleKioskMode()
   }
 
   # Quits UNTV
