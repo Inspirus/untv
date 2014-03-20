@@ -6,7 +6,7 @@ if shows.length
         - last_show = show
         - var torrents = JSON.stringify(show.torrents)
         if show.season && show.episode.number
-          li(data-torrents="#{torrents}") 
+          li(data-torrents="#{torrents}", data-magnet="#{show.link}") 
             strong #{show.title}
             em.
                 Season #{show.season}

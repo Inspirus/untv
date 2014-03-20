@@ -59,8 +59,20 @@ class TorrentStream extends EventEmitter
     if @video_stream and @video_stream.clearCache then do @video_stream.clearCache
     delete @video_stream
 
+  downloadSource: (src, callback) =>
+    destination = fs.createWriteStream "#{os.tmpDir()}/src"
+    download    = request src
+
+    donwload.on "error", (err) => callback err
+    destination.on "finish", => callback null, "#{os.tmpDir()}/src"
+
+    download.pipe destination
+
   stream: =>
     do @cleanUp
+    # @downloadSource @target_path, (err, file_path) =>
+      # if err then return @emit "error", err
+      # pass downloaded file to engine
     console.log "opening stream..."
     @video_stream = peerflix @target_path, @options, (err, flix) => 
       if err
@@ -80,7 +92,7 @@ class TorrentStream extends EventEmitter
       flix.server.on "listening", =>
         console.log "streaming server opened"
         
-  TIMEOUT_LENGTH: 90000 # 90 seconds
+  TIMEOUT_LENGTH: 120000 # 2 minutes
   MIN_PERCENTAGE_LOADED: 0.5
   MIN_SIZE_LOADED: 10 * 1024 * 1024
 

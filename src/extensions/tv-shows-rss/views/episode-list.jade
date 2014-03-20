@@ -7,7 +7,7 @@ if episodes.length
       - var torrents = JSON.stringify(episode.torrents)
       if last_episode_num !== episode.episode.number
         - last_episode_num = episode.episode.number
-        li(data-torrents="#{torrents}")
+        li(data-torrents="#{torrents}", data-magnet="#{show.link}")
           strong.
             Season #{episode.season} - 
             Episode #{episode.episode.number}

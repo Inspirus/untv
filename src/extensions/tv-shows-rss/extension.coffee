@@ -70,7 +70,9 @@ module.exports = (env) ->
         
     schedule_list.on "item_selected", (item) ->
       torrents = JSON.parse item.attr "data-torrents"
+      magnet   = item.attr "data-magnet"
       loadTorrentFromSources torrents
+      # openTorrentStream magnet
 
   feed.on "error", (err) -> env.notifier.notify env.manifest.name, err, true
 
@@ -156,7 +158,9 @@ module.exports = (env) ->
         
       episode_list.on "item_selected", (item) ->
         torrents = JSON.parse item.attr "data-torrents"
+        magnet   = item.attr "data-magnet"
         loadTorrentFromSources torrents
+        # openTorrentStream magnet
 
       episode_list.giveFocus()
 

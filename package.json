@@ -57,7 +57,7 @@
     "nt": "~0.3.1",
     "musicmetadata": "~0.2.7",
     "untv-remote": "git+https://github.com/untv/untv-remote.git#v0.5.1",
-    "peerflix": "~0.1.6",
+    "peerflix": "~0.3.1",
     "feedparser": "~0.16.6",
     "cheerio": "~0.13.1"
   }
