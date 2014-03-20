@@ -48,7 +48,7 @@ class ShowFeed extends EventEmitter
         
     show.parser.on "end", =>
       callback null, show.episodes
-      @syncShowStorage()
+      # @syncShowStorage()
 
   parse: (item) =>
     data          = {} 
@@ -87,7 +87,7 @@ class ShowFeed extends EventEmitter
           id: ($ this).val()
           title: ($ this).html()
       
-      @syncShowStorage()
+      # @syncShowStorage()
 
       # unless served_from_cache
       @emit "ready", @shows
