@@ -18,6 +18,8 @@ dns                = require "dns"
 common             = require "./common"
 hat                = require "hat"
 TorrentStream      = require "./torrent-stream"
+config             = JSON.parse fs.readFileSync "#{__dirname}/../config.json"
+moviedb            = require "tmdbv3"
 
 class GlobalMenu extends EventEmitter
 
@@ -29,6 +31,7 @@ class GlobalMenu extends EventEmitter
     @window_height      = ($ window).height()
     @ready              = yes
     @settings           = new SettingsRegistry "untv_global"
+    @movieDB            = moviedb.init(config.tmdb_api_key)
     
     do @subscribe
 
@@ -156,6 +159,7 @@ class GlobalMenu extends EventEmitter
       view: null
       gui: gui
       torrentStreamer: @torrentStreamer
+      movieDB: @movieDB
     # apply overrides
     env = env extends overrides
     if env.manifest and env.manifest.privileged
