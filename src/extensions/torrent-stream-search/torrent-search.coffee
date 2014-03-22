@@ -29,14 +29,18 @@ class TorrentSearch
     request "#{@base_url}upcoming.#{@data_type}", (err, response, body) =>
       if response.statusCode is 200
         data = if not err then (results: JSON.parse body) else null
-      if typeof callback is "function" then callback err, data
+        if callback then callback null, data?.MovieList
+      else
+        if callback then callback "Failed to fetch movies!"
 
   list: (data, callback) =>
     query = qstring.stringify data or {}
     request "#{@base_url}list.#{@data_type}?#{query}", (err, response, body) =>
       if response.statusCode is 200
         data = if not err then (JSON.parse body) else null
-      if typeof callback is "function" then callback err, data?.MovieList
+        if callback then callback null, data?.MovieList
+      else
+        if callback then callback "Failed to fetch movies!"
 
   # latest should get us the default sort 
   latest: (callback) => 

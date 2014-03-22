@@ -25,7 +25,8 @@ module.exports = (env) ->
   localStorage   = window.localStorage
   show_list_view = env.gui.$ "#shows-menu", env.view
   schedule_view  = env.gui.$ "#today-schedule", env.view
-  episode_view   = env.gui.$ "#episode-list", env.view
+  episode_view   = env.gui.$ "#episode-list .episode-list", env.view
+  detail_view    = env.gui.$ "#episode-list .details", env.view
 
   keyboard_config = 
     default: "alphanum"
@@ -36,26 +37,28 @@ module.exports = (env) ->
   keyboard = new env.gui.VirtualKeyboard env.remote, keyboard_config
 
   show_list_config  = 
-    adjust_y: (env.gui.$ "h2", show_list_view).outerHeight()
-    adjust_x: schedule_view.width()
+    adjust_y: 0 # (env.gui.$ "h2", show_list_view).outerHeight()
+    adjust_x: schedule_view.outerWidth()
     smart_scroll: yes 
     leave_decoration: yes
 
   episode_list_config  = 
-    adjust_y: (env.gui.$ "h2", episode_view).outerHeight()
-    adjust_x: show_list_view.width()
+    adjust_y: env.gui.$(window).height() / 2
+    adjust_x: show_list_view.outerWidth()
     smart_scroll: yes 
     leave_decoration: no
 
   show_list     = null
   schedule_list = null
   episode_list  = null
+
   # get today's schedule
   feed.getSchedule (err, shows) ->
     view = jade.compile fs.readFileSync "#{__dirname}/views/schedule.jade"
     view = view shows: shows
     (env.gui.$ ".list-container", schedule_view).html view
     schedule_view.removeClass "loading"
+   
     # wire up navilist and shift focus
     schedule_list = new env.gui.NavigableList(
       (env.gui.$ "ul", schedule_view), 
@@ -114,7 +117,7 @@ module.exports = (env) ->
             do show_list.unlock
             filterShowList text, show_list
       else
-        loadShowById item.attr "data-show-id"
+        loadShowById (item.attr "data-show-id"), item.text()
 
   # the back button should clear any search filter
   # and take us back to today's schedule
@@ -134,17 +137,38 @@ module.exports = (env) ->
     if items.filter(":visible").length is 0 then items.show()
     else show_list.giveFocus items.filter(":visible").first().index()
 
-  loadShowById = (show_id) ->
+  loadShowById = (show_id, search_phrase) ->
     schedule_view.hide()
-    episode_view.html("").addClass("loading").show()
+    (env.gui.$ "#episode-list").addClass("loading").show()
+
+    # if we have a search phrase, lookup details
+    if search_phrase
+      env.movieDB.search.tv search_phrase, (err, data) ->
+        if err then return env.notifier.notify env.manifest.name, err, true
+        if data.results.length
+          id = data.results[0].id
+          env.movieDB.tv.info id, (err, info) ->
+            if err then return env.notifier.notify env.manifest.name, err, true
+            # use tv show data here
+            view = jade.compile fs.readFileSync "#{__dirname}/views/show-details.jade"
+            # add backdrop
+            base               = env.movieDB.config.images.base_url
+            info.backdrop_path = "#{base}w1280#{info.backdrop_path}"
+            info.poster_path   = "#{base}w342#{info.poster_path}"
+            (env.gui.$ "#episode-list").css "background-image", "url('#{info.backdrop_path}')"
+
+            view = view info
+            detail_view.html(view).removeClass "loading"
+
     feed.getFeed show_id, (err, episodes) ->
       if err then return env.notifier.notify env.manifest.name, err, yes
       view = jade.compile fs.readFileSync "#{__dirname}/views/episode-list.jade"
       view = view episodes: episodes
-      episode_view.html(view).removeClass "loading"
+      episode_view.html(view)
+      (env.gui.$ "#episode-list").removeClass("loading")
       # wire up navilist and shift focus
       episode_list = new env.gui.NavigableList(
-        (env.gui.$ "ul", episode_view), 
+        episode_view, 
         env.remote, 
         episode_list_config
       )
