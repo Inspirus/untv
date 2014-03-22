@@ -27,7 +27,7 @@ class TorrentSearch
 
   upcoming: (callback) =>
     request "#{@base_url}upcoming.#{@data_type}", (err, response, body) =>
-      if response.statusCode is 200
+      if response and response.statusCode is 200
         data = if not err then (results: JSON.parse body) else null
         if callback then callback null, data?.MovieList
       else
@@ -54,7 +54,7 @@ class TorrentSearch
 
   get: (id, callback) =>
     request "#{@base_url}movie.#{@data_type}?id=#{id}", (err, response, body) =>
-      if response.statusCode is 200
+      if response and response.statusCode is 200
         data = if not err then (JSON.parse body) else null
       if typeof callback is "function" then callback err, data
 
