@@ -127,11 +127,11 @@ class NavigableList extends EventEmitter
     @focused = no
     @scroller.removeClass @focused_area_classname
     if @last_item and not @config.leave_decoration 
-      @last_item.removeClass @selected_item_classname
+      @last_item?.removeClass @selected_item_classname
     else
-      @last_item.removeClass @selected_item_classname
+      @last_item?.removeClass @selected_item_classname
       if @selected then @last_item = @selected
-      @last_item.addClass @selected_item_classname
+      @last_item?.addClass @selected_item_classname
 
   lock: => 
     @locked = yes
