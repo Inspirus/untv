@@ -72,7 +72,7 @@ class TorrentStream extends EventEmitter
       , 300
 
       @waitingTimeout = setTimeout =>
-        if @percent < 100 then @emit "timeout"
+        if @percent < 1 then @emit "timeout"
       , @TIMEOUT_LENGTH
 
       @emit "loading"

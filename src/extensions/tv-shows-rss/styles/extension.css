@@ -50,6 +50,41 @@
   background-size: 140px;
 }
 
+#today_schedule {
+  background-repeat: no-repeat;
+  background-position: center center; 
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+#today-schedule .list-container {
+  position: fixed;
+  top: 0;
+  left: 20%;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.8);
+}
+
+#today-schedule .banner {
+  position: fixed;
+  top: 52px;
+  right: -86px;
+  width: 280px;
+  padding: 6px 12px;
+  text-align: center;
+  background: linear-gradient(to bottom, #c9de96 0%,#8ab66b 44%,#398235 100%);
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 0 2px 4px #398235;
+  -webkit-transform: rotate(45deg);
+  box-shadow: 3px 0 5px #000;
+}
+
+#today-schedule .episode-list {
+  top: 0 !important;
+}
+
 #episode-list {
   display: none;
   background-repeat: no-repeat;

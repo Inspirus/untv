@@ -48,6 +48,12 @@ module.exports = (env) ->
     smart_scroll: yes 
     leave_decoration: no
 
+  schedule_list_config  = 
+    adjust_y: 0
+    adjust_x: show_list_view.outerWidth()
+    smart_scroll: yes 
+    leave_decoration: no
+
   show_list     = null
   schedule_list = null
   episode_list  = null
@@ -63,7 +69,7 @@ module.exports = (env) ->
     schedule_list = new env.gui.NavigableList(
       (env.gui.$ "ul", schedule_view), 
       env.remote, 
-      episode_list_config
+      schedule_list_config
     )
 
     schedule_list.on "out_of_bounds", (data) ->
@@ -74,6 +80,19 @@ module.exports = (env) ->
     schedule_list.on "item_selected", (item) ->
       torrents = JSON.parse item.attr "data-torrents"
       loadTorrentFromSources torrents
+
+    schedule_list.on "item_focused", (item) ->
+      show_title = (env.gui.$ "strong", item).text()
+      env.movieDB.search.tv show_title, (err, data) ->
+        if err then return
+        if not data.results.length then return
+        id = data.results[0].id
+        env.movieDB.tv.info id, (err, info) ->
+          if err then return
+          base     = env.movieDB.config.images.base_url
+          backdrop = "#{base}w1280#{info.backdrop_path}"
+          schedule_view.css "background-image", "url('#{backdrop}')"
+      
 
   feed.on "error", (err) -> env.notifier.notify env.manifest.name, err, true
 
