@@ -1,22 +1,22 @@
-.movie-detail(data-id="#{MovieID}", data-torrent="#{TorrentUrl}")
+.movie-detail(data-id="#{yify.MovieID}", data-torrent="#{yify.TorrentUrl}", style="background-image:url('#{moviedb.backdrop_path}')")
   .movie-info
     h2 
-      | #{MovieTitleClean}
-      span.mpaa #{AgeRating}
+      | #{moviedb.title}
+      span.mpaa #{yify.AgeRating}
     .screens
-      img(src="#{MediumScreenshot1}")
+      img(src="#{moviedb.poster_path}")
       //- img(src="#{MediumScreenshot2}")
       //- img(src="#{MediumScreenshot3}")
     ul
       li
         strong Directed by: 
-        - var directors = DirectorList.map(function(d) { return d.DirectorName }).join(", ")
+        - var directors = yify.DirectorList.map(function(d) { return d.DirectorName }).join(", ")
         span #{directors}
       li
         strong Starring: 
-        -var stars = CastList.map(function(d) { return d.ActorName }).join(", ")
+        -var stars = yify.CastList.map(function(d) { return d.ActorName }).join(", ")
         span #{stars}
-    p.movie-plot !{ShortDescription}
+    p.movie-plot !{moviedb.overview}
     div.movie-help.
       Press <strong>select</strong> to play. Press <strong>back</strong> to dismiss.
 .loader

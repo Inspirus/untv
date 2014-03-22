@@ -8,8 +8,9 @@ stream them directly to the global player instance
 
 fs            = require "fs"
 TorrentSearch = require "./torrent-search"
-torrents      = new TorrentSearch()
 localStorage  = window.localStorage
+torrents      = new TorrentSearch()
+async         = require "async"
 
 ###
 Pre-emptively Load Latest Movies and Cache
@@ -140,15 +141,16 @@ module.exports = (env) ->
     # kill any pending details request
     do detail_request?.abort
     movie_id = (env.gui.$ ".movie", item).data "id"
-    # show details
-    if movie_id
+    imdb_id  = (env.gui.$ ".movie", item).data "imdb"
+
+    if imdb_id
       details_view.addClass "loading"
-      detail_request = torrents.get movie_id, (err, data) ->
+      getMovieDetails movie_id, imdb_id, (err, movieInfo) -> 
         details_view.removeClass "loading"
         if err then return
         details = torrents.compileTemplate "details"
         # render view
-        (env.gui.$ "#torrent-details").html details data
+        (env.gui.$ "#torrent-details").html details movieInfo
       
       # if this is the last row in the grid, load the next 50 movies
       # but only if there is already more than one row loaded
@@ -241,6 +243,20 @@ module.exports = (env) ->
         do grid.releaseFocus
         do menu.giveFocus
       # when "right"
+
+
+  getMovieDetails = (yifyId, imdbId, callback) ->
+    async.parallel [
+      (next) -> env.movieDB.movie.info imdbId, next
+      (next) -> torrents.get yifyId, next
+    ], (err, results) ->
+      if err then return
+      moviedb = results[0]
+      yify    = results[1]
+      base    = env.movieDB.config.images.base_url
+      moviedb.backdrop_path = "#{base}w1280#{moviedb.backdrop_path}"
+      moviedb.poster_path = "#{base}w342#{moviedb.poster_path}"
+      callback null, { yify, moviedb }
 
   # show disclaimer after all bindings are set up
   env.notifier.notify env.manifest.name, disclaimer if config.show_disclaimer

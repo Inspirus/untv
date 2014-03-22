@@ -32,7 +32,7 @@ class GlobalMenu extends EventEmitter
     @ready              = yes
     @settings           = new SettingsRegistry "untv_global"
     @movieDB            = moviedb.init(config.tmdb_api_key)
-    
+
     do @subscribe
 
     ($ window).bind "resize", => 
@@ -292,8 +292,8 @@ class GlobalMenu extends EventEmitter
     @injectStyleSheets extension
 
     # animate the transition out of the current extension
-    ($ "*", container).removeClass "visible #{@menu_animation_in_classname}"
-    ($ "*", container).addClass "#{@menu_animation_out_classname}"
+    ($ "#app", container).removeClass "visible #{@menu_animation_in_classname}"
+    ($ "#app", container).addClass "#{@menu_animation_out_classname}"
     do container.hide
     # after the animation duration, execute the main extension script and
     # animate the extension view back into the main view
@@ -303,8 +303,8 @@ class GlobalMenu extends EventEmitter
         manifest: extension
         view: container
 
-      ($ "*", container).removeClass "#{@menu_animation_out_classname}"
-      ($ "*", container).addClass "visible #{@menu_animation_in_classname}"
+      ($ "#app", container).removeClass "#{@menu_animation_out_classname}"
+      ($ "#app", container).addClass "visible #{@menu_animation_in_classname}"
         
     ), 400
 

@@ -13,7 +13,7 @@ class TorrentSearch
   constructor: ->
     @history = []
 
-  base_url: "http://yify-torrents.com/api/"
+  base_url: "http://yts.re/api/" # "http://yify-torrents.com/api/"
   data_type: "json"
 
   templates:
@@ -27,13 +27,15 @@ class TorrentSearch
 
   upcoming: (callback) =>
     request "#{@base_url}upcoming.#{@data_type}", (err, response, body) =>
-      data = if not err then (results: JSON.parse body) else null
-      if typeof callback is "function" then callback err data
+      if response.statusCode is 200
+        data = if not err then (results: JSON.parse body) else null
+      if typeof callback is "function" then callback err, data
 
   list: (data, callback) =>
     query = qstring.stringify data or {}
     request "#{@base_url}list.#{@data_type}?#{query}", (err, response, body) =>
-      data = if not err then (JSON.parse body) else null
+      if response.statusCode is 200
+        data = if not err then (JSON.parse body) else null
       if typeof callback is "function" then callback err, data?.MovieList
 
   # latest should get us the default sort 
@@ -48,7 +50,8 @@ class TorrentSearch
 
   get: (id, callback) =>
     request "#{@base_url}movie.#{@data_type}?id=#{id}", (err, response, body) =>
-      data = if not err then (JSON.parse body) else null
+      if response.statusCode is 200
+        data = if not err then (JSON.parse body) else null
       if typeof callback is "function" then callback err, data
 
 module.exports = TorrentSearch
