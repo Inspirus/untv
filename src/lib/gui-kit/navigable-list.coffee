@@ -49,14 +49,14 @@ class NavigableList extends EventEmitter
     @scroller.bind "mouseout", (event) => @releaseFocus()
 
   nextItem: =>
-    if @last_item.nextAll("li").length
+    if @last_item.nextAll("li:visible").length
       @last_item.removeClass @selected_item_classname
-      @last_item = @last_item.nextAll("li").first().addClass @selected_item_classname
+      @last_item = @last_item.nextAll("li:visible").first().addClass @selected_item_classname
       @setScrollPosition @last_item
     else
       if @config.smart_scroll
         @last_item.removeClass @selected_item_classname
-        @last_item = ($ "li", @scroller).first().addClass @selected_item_classname
+        @last_item = ($ "li:visible", @scroller).first().addClass @selected_item_classname
         @setScrollPosition @last_item
       else
         @emit "out_of_bounds", direction: "bottom"
@@ -65,14 +65,14 @@ class NavigableList extends EventEmitter
     @remote.playEventSound "click", 0.2, 0.3
 
   prevItem: =>
-    if @last_item.prevAll("li").length
+    if @last_item.prevAll("li:visible").length
       @last_item.removeClass @selected_item_classname
-      @last_item = @last_item.prevAll("li").first().addClass @selected_item_classname
+      @last_item = @last_item.prevAll("li:visible").first().addClass @selected_item_classname
       @setScrollPosition @last_item
     else
       if @config.smart_scroll
         @last_item.removeClass @selected_item_classname
-        @last_item = ($ "li", @scroller).last().addClass @selected_item_classname
+        @last_item = ($ "li:visible", @scroller).last().addClass @selected_item_classname
         @setScrollPosition @last_item
       else
         @emit "out_of_bounds", direction: "top"
@@ -81,11 +81,13 @@ class NavigableList extends EventEmitter
 
   setScrollPosition: (item) =>
     if not item then throw "setScrollPosition() requires a list item."
-    total_items     = item.siblings().length + 1
+    total_items     = item.siblings(":visible").length + 1
     item_height     = item.outerHeight()
     list_height     = item.parent().outerHeight()
     item_index      = item.index()
     viewport_height = @scroller.parent().height()
+    # determine if there are more items than the viewport can show
+    if (total_items * item_height) < viewport_height then return
     items_in_view   = Math.floor viewport_height / item_height
     view_set        = (Math.ceil (item_index + 1) / items_in_view)
     view_set        = view_set - 1 if view_set isnt 0

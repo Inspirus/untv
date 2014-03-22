@@ -117,13 +117,14 @@ module.exports = (env) ->
             do show_list.unlock
             filterShowList text, show_list
       else
+        show_list.releaseFocus()
         loadShowById (item.attr "data-show-id"), item.text()
 
   # the back button should clear any search filter
   # and take us back to today's schedule
   env.remote.on "go:back", ->
     (env.gui.$ "li", show_list_view).show()
-    episode_view.hide()
+    (env.gui.$ "#episode-list").hide()
     schedule_view.show()
 
   filterShowList = (text, show_list) ->
@@ -173,9 +174,11 @@ module.exports = (env) ->
         episode_list_config
       )
 
+      episode_list.giveFocus()
+
       episode_list.on "out_of_bounds", (data) ->
         if data.direction is "left"
-          schedule_list.releaseFocus()
+          episode_list.releaseFocus()
           show_list.giveFocus()
         
       episode_list.on "item_selected", (item) ->
