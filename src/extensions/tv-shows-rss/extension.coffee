@@ -209,16 +209,16 @@ module.exports = (env) ->
   openTorrentStream = (src) ->
     torrent.on "error", (err) ->
       env.notifier.notify env.manifest.name , err, yes
-      episode_list.unlock()
-      schedule_list.unlock()
+      episode_list?.unlock()
+      schedule_list?.unlock()
 
     torrent.on "ready", (file_info) ->
       console.log "ready!"
       do torrent.stream
 
     torrent.on "timeout", ->
-      episode_list.unlock()
-      schedule_list.unlock()
+      episode_list?.unlock()
+      schedule_list?.unlock()
       (env.gui.$ "#progress-loader").fadeOut(200)
       env.notifier.notify env.manifest.name, "Connection timed out.", true
 
@@ -240,8 +240,8 @@ module.exports = (env) ->
     torrent.consume src, true
 
   loadTorrentFromSources = (sources) ->
-    episode_list.lock()
-    schedule_list.lock()
+    episode_list?.lock()
+    schedule_list?.lock()
     env.notifier.notify env.manifest.name, "Preparing...", true
     attempts = sources.map (src) ->
       return (next) ->
