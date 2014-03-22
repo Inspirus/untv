@@ -31,6 +31,21 @@ header.extension-header {
   z-index: 8;
 }
 
+#torrent-list .banner {
+  position: fixed;
+  top: 52px;
+  right: -86px;
+  width: 280px;
+  padding: 6px 12px;
+  text-align: center;
+  background: linear-gradient(to bottom, #c9de96 0%,#8ab66b 44%,#398235 100%);
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 0 2px 4px #398235;
+  -webkit-transform: rotate(45deg);
+  box-shadow: 3px 0 5px #000;
+}
+
 #torrent-list ul {
   list-style-type: none;
   margin: 0 auto;
