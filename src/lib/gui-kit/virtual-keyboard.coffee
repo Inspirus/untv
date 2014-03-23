@@ -19,6 +19,7 @@ class VirtualKeyboard extends EventEmitter
     allow: [
       "alphanum"
       "symbols"
+      "numeric"
     ]
 
   constructor: (@remote, @options = defaults) -> 

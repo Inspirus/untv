@@ -33,6 +33,7 @@ module.exports = (env) ->
     allow: [
       "alphanum"
       "symbols"
+      "numeric"
     ]
   keyboard = new env.gui.VirtualKeyboard env.remote, keyboard_config
 
