@@ -1,4 +1,26 @@
 if remote_ip
-  p Connect your smartphone to http://#{remote_ip}:#{remote_port}
+  p.
+    To control UnTV using your smart phone, open a web browser and navigate to:
+    <strong>http://#{remote_ip}:#{remote_port}</strong>
 else
-  p UNTV is not connected to a network. Connect to your local network to use the remote.
+  p.
+    UnTV is not connected to a network. Connect to your local network to use 
+    your phone as remote control.
+p.
+  You can also use your keyboard as a remote:
+.instructions-ctr
+  .col
+    ul.instructions
+      li <strong>Scroll Up:</strong> Up
+      li <strong>Scroll Left:</strong> Left
+      li <strong>Scroll Right:</strong> Right
+      li <strong>Scroll Down:</strong> Down
+      li <strong>Toggle Menu:</strong> Home
+      li  <strong>Go Back:</strong> Page Up
+  .col
+    ul.instructions
+      li <strong>Go Next:</strong> Page Down
+      li <strong>Select:</strong> Enter
+      li <strong>Pause/Play Player:</strong> Shift + Space
+      li <strong>Seek Player Previous:</strong> Shift + Left
+      li <strong>Seek Player Next:</strong> Shift + Right

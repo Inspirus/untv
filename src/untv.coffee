@@ -81,14 +81,19 @@ do ($ "#init-loader").hide
 do menu.open
 do win?.show
 
-setTimeout ->
+# help notifications
+showHelp = -> 
   view    = jade.compile fs.readFileSync "#{__dirname}/views/connect-remote.jade"
   content = view
     remote_ip: remote.interfaces()[0]?.address
     remote_port: config.remote_port
+  notifier.notify "Welcome to UnTV", content
 
+window.Mousetrap.bind "?", showHelp
+
+setTimeout ->
   if config.show_remote_instructions
-    if not remote.connected then notifier.notify "System Message", content
+    if not remote.connected then showHelp()
     remote.on "remote:connected", -> 
       do notifier.dismiss
       notifier.notify "Remote", "Connected!", yes

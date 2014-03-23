@@ -49,8 +49,8 @@ class TorrentSearch
       limit: 50
     , (err, list) ->
       if callback then callback err, list
-      if not err and list
-        localStorage.setItem "movies:latest:all", JSON.stringify list
+      # if not err and list
+      #   localStorage.setItem "movies:latest:all", JSON.stringify list
 
   get: (id, callback) =>
     request "#{@base_url}movie.#{@data_type}?id=#{id}", (err, response, body) =>
