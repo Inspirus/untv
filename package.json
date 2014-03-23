@@ -41,6 +41,7 @@
   "webkit": {
     "plugin": true
   },
+  "dom_storage_quota": 6,
   "dependencies": {
     "coffee-script": "~1.6.3",
     "socket.io": "~0.9.16",
