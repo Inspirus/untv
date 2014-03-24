@@ -13,7 +13,10 @@ class TorrentSearch
   constructor: ->
     @history = []
 
-  base_url: "http://yts.re/api/" # "http://yify-torrents.com/api/"
+  base_url: "http://yts.im/api/" # should be good in the UK and Malaysia
+  # other options are:
+  # "http://yts.re/api/" 
+  # "http://yify-torrents.com/api/"
   data_type: "json"
 
   templates:
