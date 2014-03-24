@@ -40,13 +40,14 @@ class NavigableList extends EventEmitter
     @remote.on "scroll:up", => do @prevItem if @focused # and not @scrolling
     @remote.on "scroll:down", => do @nextItem if @focused # and not @scrolling
 
-    ($ "li", @scroller).bind "mouseover", (event) =>
-      item = $ event.target
-      @giveFocus item.index()
-      @emit "item_focused", item
-
-    @scroller.bind "mouseover", (event) => @giveFocus()
-    @scroller.bind "mouseout", (event) => @releaseFocus()
+    # -- leave this commented for now, mouse support in this manner sucks
+    # -- and does more to confise the user than anything else
+    # ($ "li", @scroller).bind "mouseover", (event) =>
+    #   item = $ event.target
+    #   @giveFocus item.index()
+    #   @emit "item_focused", item
+    # @scroller.bind "mouseover", (event) => @giveFocus()
+    # @scroller.bind "mouseout", (event) => @releaseFocus()
 
   nextItem: =>
     if @last_item.nextAll("li:visible").length
