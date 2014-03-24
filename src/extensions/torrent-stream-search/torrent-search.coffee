@@ -28,8 +28,11 @@ class TorrentSearch
   upcoming: (callback) =>
     request "#{@base_url}upcoming.#{@data_type}", (err, response, body) =>
       if response and response.statusCode is 200
-        data = if not err then (results: JSON.parse body) else null
-        if callback then callback null, data?.MovieList
+        try 
+          data = results: JSON.parse body
+          if callback then callback null, data?.MovieList
+        catch parseErr
+          if callback then callback "Malformed response! Has your ISP blocked access?"
       else
         if callback then callback "Failed to fetch movies!"
 
@@ -37,8 +40,11 @@ class TorrentSearch
     query = qstring.stringify data or {}
     request "#{@base_url}list.#{@data_type}?#{query}", (err, response, body) =>
       if response.statusCode is 200
-        data = if not err then (JSON.parse body) else null
-        if callback then callback null, data?.MovieList
+        try 
+          data = results: JSON.parse body
+          if callback then callback null, data?.MovieList
+        catch parseErr
+          if callback then callback "Malformed response! Has your ISP blocked access?"
       else
         if callback then callback "Failed to fetch movies!"
 
@@ -55,7 +61,12 @@ class TorrentSearch
   get: (id, callback) =>
     request "#{@base_url}movie.#{@data_type}?id=#{id}", (err, response, body) =>
       if response and response.statusCode is 200
-        data = if not err then (JSON.parse body) else null
-      if typeof callback is "function" then callback err, data
+        try 
+          data = JSON.parse body
+          if callback then callback null, data
+        catch parseErr
+          if callback then callback "Malformed response! Has your ISP blocked access?"
+      else
+        if typeof callback is "function" then callback err
 
 module.exports = TorrentSearch
