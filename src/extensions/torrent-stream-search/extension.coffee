@@ -11,6 +11,7 @@ TorrentSearch = require "./torrent-search"
 localStorage  = window.localStorage
 torrents      = new TorrentSearch()
 async         = require "async"
+opensub       = require "opensubtitles-client"
 
 ###
 Pre-emptively Load Latest Movies and Cache
