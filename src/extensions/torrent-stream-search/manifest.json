@@ -8,15 +8,6 @@
   "stylesheets": [
     "styles/extension.css"
   ],
-  "config": {
-    "show_disclaimer": {
-      "register": true,
-      "default": false,
-      "is_toggle": true,
-      "description": "Always show copyright law disclaimer"
-    },
-    "use_test_data": false
-  },
   "locals": {
     "genres": [
       "Action",
@@ -42,5 +33,2783 @@
       "War",
       "Western"
     ]
+  },
+  "config": {
+    "show_disclaimer": {
+      "register": true,
+      "default": false,
+      "is_toggle": true,
+      "description": "Always show copyright law disclaimer"
+    },
+    "subtitles_language": {
+      "register": true,
+      "description": "Subtitles lanuage for movies",
+      "default": {
+        "value": "eng",
+        "name": "English"
+      },
+      "options": [
+        {
+          "value": "aar",
+          "name": "Afaraf"
+        },
+        {
+          "value": "aa",
+          "name": "Afaraf"
+        },
+        {
+          "value": "abk",
+          "name": "Abkhazian"
+        },
+        {
+          "value": "ab",
+          "name": "Abkhazian"
+        },
+        {
+          "value": "ace",
+          "name": "Achinese"
+        },
+        {
+          "value": "ach",
+          "name": "Acoli"
+        },
+        {
+          "value": "ada",
+          "name": "Adangme"
+        },
+        {
+          "value": "ady",
+          "name": "Adygei"
+        },
+        {
+          "value": "afa",
+          "name": "Afro-Asiatic Languages"
+        },
+        {
+          "value": "afh",
+          "name": "Afrihili"
+        },
+        {
+          "value": "afr",
+          "name": "Afrikaans"
+        },
+        {
+          "value": "af",
+          "name": "Afrikaans"
+        },
+        {
+          "value": "ain",
+          "name": "Ainu"
+        },
+        {
+          "value": "aka",
+          "name": "Akan"
+        },
+        {
+          "value": "ak",
+          "name": "Akan"
+        },
+        {
+          "value": "akk",
+          "name": "Akkadian"
+        },
+        {
+          "value": "alb",
+          "name": "Shqip"
+        },
+        {
+          "value": "sqi",
+          "name": "Shqip"
+        },
+        {
+          "value": "sq",
+          "name": "Shqip"
+        },
+        {
+          "value": "ale",
+          "name": "Aleut"
+        },
+        {
+          "value": "alg",
+          "name": "Algonquian Languages"
+        },
+        {
+          "value": "alt",
+          "name": "Southern Altai"
+        },
+        {
+          "value": "amh",
+          "name": "አማርኛ"
+        },
+        {
+          "value": "am",
+          "name": "አማርኛ"
+        },
+        {
+          "value": "ang",
+          "name": "English Old (ca.450-1100)"
+        },
+        {
+          "value": "anp",
+          "name": "Angika"
+        },
+        {
+          "value": "apa",
+          "name": "Apache Languages"
+        },
+        {
+          "value": "ara",
+          "name": "العربية"
+        },
+        {
+          "value": "ar",
+          "name": "العربية"
+        },
+        {
+          "value": "arc",
+          "name": "Imperial Aramaic (700-300 BCE)"
+        },
+        {
+          "value": "arg",
+          "name": "Aragonés"
+        },
+        {
+          "value": "an",
+          "name": "Aragonés"
+        },
+        {
+          "value": "arm",
+          "name": "Հայերեն"
+        },
+        {
+          "value": "hye",
+          "name": "Հայերեն"
+        },
+        {
+          "value": "hy",
+          "name": "Հայերեն"
+        },
+        {
+          "value": "arn",
+          "name": "Mapuche"
+        },
+        {
+          "value": "arp",
+          "name": "Arapaho"
+        },
+        {
+          "value": "art",
+          "name": "Artificial Languages"
+        },
+        {
+          "value": "arw",
+          "name": "Arawak"
+        },
+        {
+          "value": "asm",
+          "name": "অসমীয়া"
+        },
+        {
+          "value": "as",
+          "name": "অসমীয়া"
+        },
+        {
+          "value": "ast",
+          "name": "Asturian"
+        },
+        {
+          "value": "ath",
+          "name": "Athapascan Languages"
+        },
+        {
+          "value": "aus",
+          "name": "Australian Languages"
+        },
+        {
+          "value": "ava",
+          "name": "авар мацӀ"
+        },
+        {
+          "value": "av",
+          "name": "авар мацӀ"
+        },
+        {
+          "value": "ave",
+          "name": "Avesta"
+        },
+        {
+          "value": "ae",
+          "name": "Avesta"
+        },
+        {
+          "value": "awa",
+          "name": "Awadhi"
+        },
+        {
+          "value": "aym",
+          "name": "Aymar Aru"
+        },
+        {
+          "value": "ay",
+          "name": "Aymar Aru"
+        },
+        {
+          "value": "aze",
+          "name": "Azərbaycan Dili"
+        },
+        {
+          "value": "az",
+          "name": "Azərbaycan Dili"
+        },
+        {
+          "value": "bad",
+          "name": "Banda Languages"
+        },
+        {
+          "value": "bai",
+          "name": "Bamileke Languages"
+        },
+        {
+          "value": "bak",
+          "name": "башҡорт теле"
+        },
+        {
+          "value": "ba",
+          "name": "башҡорт теле"
+        },
+        {
+          "value": "bal",
+          "name": "Baluchi"
+        },
+        {
+          "value": "bam",
+          "name": "Bamanankan"
+        },
+        {
+          "value": "bm",
+          "name": "Bamanankan"
+        },
+        {
+          "value": "ban",
+          "name": "Balinese"
+        },
+        {
+          "value": "baq",
+          "name": "Euskara"
+        },
+        {
+          "value": "eus",
+          "name": "Euskara"
+        },
+        {
+          "value": "eu",
+          "name": "Euskara"
+        },
+        {
+          "value": "bas",
+          "name": "Basa"
+        },
+        {
+          "value": "bat",
+          "name": "Baltic Languages"
+        },
+        {
+          "value": "bej",
+          "name": "Bedawiyet"
+        },
+        {
+          "value": "bel",
+          "name": "Беларуская"
+        },
+        {
+          "value": "be",
+          "name": "Беларуская"
+        },
+        {
+          "value": "bem",
+          "name": "Bemba"
+        },
+        {
+          "value": "ben",
+          "name": "বাংলা"
+        },
+        {
+          "value": "bn",
+          "name": "বাংলা"
+        },
+        {
+          "value": "ber",
+          "name": "Berber Languages"
+        },
+        {
+          "value": "bho",
+          "name": "Bhojpuri"
+        },
+        {
+          "value": "bih",
+          "name": "Bihari Languages"
+        },
+        {
+          "value": "bh",
+          "name": "Bihari Languages"
+        },
+        {
+          "value": "bik",
+          "name": "Bikol"
+        },
+        {
+          "value": "bin",
+          "name": "Bini"
+        },
+        {
+          "value": "bis",
+          "name": "Bislama"
+        },
+        {
+          "value": "bi",
+          "name": "Bislama"
+        },
+        {
+          "value": "bla",
+          "name": "Siksika"
+        },
+        {
+          "value": "bnt",
+          "name": "Bantu (Other)"
+        },
+        {
+          "value": "bos",
+          "name": "Bosanski Jezik"
+        },
+        {
+          "value": "bs",
+          "name": "Bosanski Jezik"
+        },
+        {
+          "value": "bra",
+          "name": "Braj"
+        },
+        {
+          "value": "bre",
+          "name": "Brezhoneg"
+        },
+        {
+          "value": "br",
+          "name": "Brezhoneg"
+        },
+        {
+          "value": "btk",
+          "name": "Batak Languages"
+        },
+        {
+          "value": "bua",
+          "name": "Buriat"
+        },
+        {
+          "value": "bug",
+          "name": "Buginese"
+        },
+        {
+          "value": "bul",
+          "name": "български език"
+        },
+        {
+          "value": "bg",
+          "name": "български език"
+        },
+        {
+          "value": "bur",
+          "name": "ဗမာစာ"
+        },
+        {
+          "value": "mya",
+          "name": "ဗမာစာ"
+        },
+        {
+          "value": "my",
+          "name": "ဗမာစာ"
+        },
+        {
+          "value": "byn",
+          "name": "Bilin"
+        },
+        {
+          "value": "cad",
+          "name": "Caddo"
+        },
+        {
+          "value": "cai",
+          "name": "Central American Indian Languages"
+        },
+        {
+          "value": "car",
+          "name": "Galibi Carib"
+        },
+        {
+          "value": "cat",
+          "name": "Català"
+        },
+        {
+          "value": "ca",
+          "name": "Català"
+        },
+        {
+          "value": "cau",
+          "name": "Caucasian Languages"
+        },
+        {
+          "value": "ceb",
+          "name": "Cebuano"
+        },
+        {
+          "value": "cel",
+          "name": "Celtic Languages"
+        },
+        {
+          "value": "cha",
+          "name": "Chamoru"
+        },
+        {
+          "value": "ch",
+          "name": "Chamoru"
+        },
+        {
+          "value": "chb",
+          "name": "Chibcha"
+        },
+        {
+          "value": "che",
+          "name": "нохчийн мотт"
+        },
+        {
+          "value": "ce",
+          "name": "нохчийн мотт"
+        },
+        {
+          "value": "chg",
+          "name": "Chagatai"
+        },
+        {
+          "value": "chi",
+          "name": "中文 (Zhōngwén)"
+        },
+        {
+          "value": "zho",
+          "name": "中文 (Zhōngwén)"
+        },
+        {
+          "value": "zh",
+          "name": "中文 (Zhōngwén)"
+        },
+        {
+          "value": "chk",
+          "name": "Chuukese"
+        },
+        {
+          "value": "chm",
+          "name": "Mari"
+        },
+        {
+          "value": "chn",
+          "name": "Chinook Jargon"
+        },
+        {
+          "value": "cho",
+          "name": "Choctaw"
+        },
+        {
+          "value": "chp",
+          "name": "Chipewyan"
+        },
+        {
+          "value": "chr",
+          "name": "Cherokee"
+        },
+        {
+          "value": "chu",
+          "name": "Church Slavic"
+        },
+        {
+          "value": "cu",
+          "name": "Church Slavic"
+        },
+        {
+          "value": "chv",
+          "name": "чӑваш чӗлхи"
+        },
+        {
+          "value": "cv",
+          "name": "чӑваш чӗлхи"
+        },
+        {
+          "value": "chy",
+          "name": "Cheyenne"
+        },
+        {
+          "value": "cmc",
+          "name": "Chamic Languages"
+        },
+        {
+          "value": "cop",
+          "name": "Coptic"
+        },
+        {
+          "value": "cor",
+          "name": "Kernewek"
+        },
+        {
+          "value": "kw",
+          "name": "Kernewek"
+        },
+        {
+          "value": "cos",
+          "name": "Corsu"
+        },
+        {
+          "value": "co",
+          "name": "Corsu"
+        },
+        {
+          "value": "cpe",
+          "name": "Creoles And Pidgins"
+        },
+        {
+          "value": "cpf",
+          "name": "Creoles And Pidgins"
+        },
+        {
+          "value": "cpp",
+          "name": "Creoles And Pidgins"
+        },
+        {
+          "value": "cre",
+          "name": "ᓀᐦᐃᔭᐍᐏᐣ"
+        },
+        {
+          "value": "cr",
+          "name": "ᓀᐦᐃᔭᐍᐏᐣ"
+        },
+        {
+          "value": "crh",
+          "name": "Crimean Tatar"
+        },
+        {
+          "value": "crp",
+          "name": "Creoles And Pidgins"
+        },
+        {
+          "value": "csb",
+          "name": "Kashubian"
+        },
+        {
+          "value": "cus",
+          "name": "Cushitic Languages"
+        },
+        {
+          "value": "cze",
+          "name": "česky"
+        },
+        {
+          "value": "ces",
+          "name": "česky"
+        },
+        {
+          "value": "cs",
+          "name": "česky"
+        },
+        {
+          "value": "dak",
+          "name": "Dakota"
+        },
+        {
+          "value": "dan",
+          "name": "Dansk"
+        },
+        {
+          "value": "da",
+          "name": "Dansk"
+        },
+        {
+          "value": "dar",
+          "name": "Dargwa"
+        },
+        {
+          "value": "day",
+          "name": "Land Dayak Languages"
+        },
+        {
+          "value": "del",
+          "name": "Delaware"
+        },
+        {
+          "value": "den",
+          "name": "Slave (Athapascan)"
+        },
+        {
+          "value": "dgr",
+          "name": "Dogrib"
+        },
+        {
+          "value": "din",
+          "name": "Dinka"
+        },
+        {
+          "value": "div",
+          "name": "Dhivehi"
+        },
+        {
+          "value": "dv",
+          "name": "Dhivehi"
+        },
+        {
+          "value": "doi",
+          "name": "Dogri"
+        },
+        {
+          "value": "dra",
+          "name": "Dravidian Languages"
+        },
+        {
+          "value": "dsb",
+          "name": "Lower Sorbian"
+        },
+        {
+          "value": "dua",
+          "name": "Duala"
+        },
+        {
+          "value": "dum",
+          "name": "Dutch Middle (ca.1050-1350)"
+        },
+        {
+          "value": "dut",
+          "name": "Dutch"
+        },
+        {
+          "value": "nld",
+          "name": "Dutch"
+        },
+        {
+          "value": "nl",
+          "name": "Dutch"
+        },
+        {
+          "value": "dyu",
+          "name": "Dyula"
+        },
+        {
+          "value": "dzo",
+          "name": "Dzongkha"
+        },
+        {
+          "value": "dz",
+          "name": "Dzongkha"
+        },
+        {
+          "value": "efi",
+          "name": "Efik"
+        },
+        {
+          "value": "egy",
+          "name": "Egyptian (Ancient)"
+        },
+        {
+          "value": "eka",
+          "name": "Ekajuk"
+        },
+        {
+          "value": "elx",
+          "name": "Elamite"
+        },
+        {
+          "value": "eng",
+          "name": "English"
+        },
+        {
+          "value": "en",
+          "name": "English"
+        },
+        {
+          "value": "enm",
+          "name": "English Middle (1100-1500)"
+        },
+        {
+          "value": "epo",
+          "name": "Esperanto"
+        },
+        {
+          "value": "eo",
+          "name": "Esperanto"
+        },
+        {
+          "value": "est",
+          "name": "Eesti"
+        },
+        {
+          "value": "et",
+          "name": "Eesti"
+        },
+        {
+          "value": "ewe",
+          "name": "Eʋegbe"
+        },
+        {
+          "value": "ee",
+          "name": "Eʋegbe"
+        },
+        {
+          "value": "ewo",
+          "name": "Ewondo"
+        },
+        {
+          "value": "fan",
+          "name": "Fang"
+        },
+        {
+          "value": "fao",
+          "name": "Føroyskt"
+        },
+        {
+          "value": "fo",
+          "name": "Føroyskt"
+        },
+        {
+          "value": "fat",
+          "name": "Fanti"
+        },
+        {
+          "value": "fij",
+          "name": "Vosa Vakaviti"
+        },
+        {
+          "value": "fj",
+          "name": "Vosa Vakaviti"
+        },
+        {
+          "value": "fil",
+          "name": "Filipino"
+        },
+        {
+          "value": "fin",
+          "name": "Suomen Kieli"
+        },
+        {
+          "value": "fi",
+          "name": "Suomen Kieli"
+        },
+        {
+          "value": "fiu",
+          "name": "Finno-Ugrian Languages"
+        },
+        {
+          "value": "fon",
+          "name": "Fon"
+        },
+        {
+          "value": "fre",
+          "name": "Français"
+        },
+        {
+          "value": "fra",
+          "name": "Français"
+        },
+        {
+          "value": "fr",
+          "name": "Français"
+        },
+        {
+          "value": "frm",
+          "name": "French Middle (ca.1400-1600)"
+        },
+        {
+          "value": "fro",
+          "name": "French Old (842-ca.1400)"
+        },
+        {
+          "value": "frr",
+          "name": "Northern Frisian"
+        },
+        {
+          "value": "frs",
+          "name": "Eastern Frisian"
+        },
+        {
+          "value": "fry",
+          "name": "Frysk"
+        },
+        {
+          "value": "fy",
+          "name": "Frysk"
+        },
+        {
+          "value": "ful",
+          "name": "Fulah"
+        },
+        {
+          "value": "ff",
+          "name": "Fulah"
+        },
+        {
+          "value": "fur",
+          "name": "Friulian"
+        },
+        {
+          "value": "gaa",
+          "name": "Ga"
+        },
+        {
+          "value": "gay",
+          "name": "Gayo"
+        },
+        {
+          "value": "gba",
+          "name": "Gbaya"
+        },
+        {
+          "value": "gem",
+          "name": "Germanic Languages"
+        },
+        {
+          "value": "geo",
+          "name": "ქართული"
+        },
+        {
+          "value": "kat",
+          "name": "ქართული"
+        },
+        {
+          "value": "ka",
+          "name": "ქართული"
+        },
+        {
+          "value": "ger",
+          "name": "Deutsch"
+        },
+        {
+          "value": "deu",
+          "name": "Deutsch"
+        },
+        {
+          "value": "de",
+          "name": "Deutsch"
+        },
+        {
+          "value": "gez",
+          "name": "Geez"
+        },
+        {
+          "value": "gil",
+          "name": "Gilbertese"
+        },
+        {
+          "value": "gla",
+          "name": "Gaelic"
+        },
+        {
+          "value": "gd",
+          "name": "Gaelic"
+        },
+        {
+          "value": "gle",
+          "name": "Gaeilge"
+        },
+        {
+          "value": "ga",
+          "name": "Gaeilge"
+        },
+        {
+          "value": "glg",
+          "name": "Galego"
+        },
+        {
+          "value": "gl",
+          "name": "Galego"
+        },
+        {
+          "value": "glv",
+          "name": "Gaelg"
+        },
+        {
+          "value": "gv",
+          "name": "Gaelg"
+        },
+        {
+          "value": "gmh",
+          "name": "German Middle High (ca.1050-1500)"
+        },
+        {
+          "value": "goh",
+          "name": "German Old High (ca.750-1050)"
+        },
+        {
+          "value": "gon",
+          "name": "Gondi"
+        },
+        {
+          "value": "gor",
+          "name": "Gorontalo"
+        },
+        {
+          "value": "got",
+          "name": "Gothic"
+        },
+        {
+          "value": "grb",
+          "name": "Grebo"
+        },
+        {
+          "value": "grc",
+          "name": "Greek Ancient (to 1453)"
+        },
+        {
+          "value": "gre",
+          "name": "Greek Modern (1453-)"
+        },
+        {
+          "value": "ell",
+          "name": "Greek Modern (1453-)"
+        },
+        {
+          "value": "el",
+          "name": "Greek Modern (1453-)"
+        },
+        {
+          "value": "grn",
+          "name": "Guarani"
+        },
+        {
+          "value": "gn",
+          "name": "Guarani"
+        },
+        {
+          "value": "gsw",
+          "name": "Alemannic"
+        },
+        {
+          "value": "guj",
+          "name": "ગુજરાતી"
+        },
+        {
+          "value": "gu",
+          "name": "ગુજરાતી"
+        },
+        {
+          "value": "gwi",
+          "name": "Gwich'in"
+        },
+        {
+          "value": "hai",
+          "name": "Haida"
+        },
+        {
+          "value": "hat",
+          "name": "Kreyòl Ayisyen"
+        },
+        {
+          "value": "ht",
+          "name": "Kreyòl Ayisyen"
+        },
+        {
+          "value": "hau",
+          "name": "Hausa"
+        },
+        {
+          "value": "ha",
+          "name": "Hausa"
+        },
+        {
+          "value": "haw",
+          "name": "Hawaiian"
+        },
+        {
+          "value": "heb",
+          "name": "Hebrew"
+        },
+        {
+          "value": "he",
+          "name": "Hebrew"
+        },
+        {
+          "value": "her",
+          "name": "Otjiherero"
+        },
+        {
+          "value": "hz",
+          "name": "Otjiherero"
+        },
+        {
+          "value": "hil",
+          "name": "Hiligaynon"
+        },
+        {
+          "value": "him",
+          "name": "Himachali Languages"
+        },
+        {
+          "value": "hin",
+          "name": "हिंदी"
+        },
+        {
+          "value": "hi",
+          "name": "हिंदी"
+        },
+        {
+          "value": "hit",
+          "name": "Hittite"
+        },
+        {
+          "value": "hmn",
+          "name": "Hmong"
+        },
+        {
+          "value": "hmo",
+          "name": "Hiri Motu"
+        },
+        {
+          "value": "ho",
+          "name": "Hiri Motu"
+        },
+        {
+          "value": "hrv",
+          "name": "Hrvatski"
+        },
+        {
+          "value": "hr",
+          "name": "Hrvatski"
+        },
+        {
+          "value": "hsb",
+          "name": "Upper Sorbian"
+        },
+        {
+          "value": "hun",
+          "name": "Magyar"
+        },
+        {
+          "value": "hu",
+          "name": "Magyar"
+        },
+        {
+          "value": "hup",
+          "name": "Hupa"
+        },
+        {
+          "value": "iba",
+          "name": "Iban"
+        },
+        {
+          "value": "ibo",
+          "name": "Asụsụ Igbo"
+        },
+        {
+          "value": "ig",
+          "name": "Asụsụ Igbo"
+        },
+        {
+          "value": "ice",
+          "name": "Íslenska"
+        },
+        {
+          "value": "isl",
+          "name": "Íslenska"
+        },
+        {
+          "value": "is",
+          "name": "Íslenska"
+        },
+        {
+          "value": "ido",
+          "name": "Ido"
+        },
+        {
+          "value": "io",
+          "name": "Ido"
+        },
+        {
+          "value": "iii",
+          "name": "Nuosu"
+        },
+        {
+          "value": "ii",
+          "name": "Nuosu"
+        },
+        {
+          "value": "ijo",
+          "name": "Ijo Languages"
+        },
+        {
+          "value": "iku",
+          "name": "ᐃᓄᒃᑎᑐᑦ"
+        },
+        {
+          "value": "iu",
+          "name": "ᐃᓄᒃᑎᑐᑦ"
+        },
+        {
+          "value": "ile",
+          "name": "Interlingue"
+        },
+        {
+          "value": "ie",
+          "name": "Interlingue"
+        },
+        {
+          "value": "ilo",
+          "name": "Iloko"
+        },
+        {
+          "value": "ina",
+          "name": "Interlingua (International Auxiliary Language Association)"
+        },
+        {
+          "value": "ia",
+          "name": "Interlingua (International Auxiliary Language Association)"
+        },
+        {
+          "value": "inc",
+          "name": "Indic Languages"
+        },
+        {
+          "value": "ind",
+          "name": "Bahasa Indonesia"
+        },
+        {
+          "value": "id",
+          "name": "Bahasa Indonesia"
+        },
+        {
+          "value": "ine",
+          "name": "Indo-European Languages"
+        },
+        {
+          "value": "inh",
+          "name": "Ingush"
+        },
+        {
+          "value": "ipk",
+          "name": "Iñupiaq"
+        },
+        {
+          "value": "ik",
+          "name": "Iñupiaq"
+        },
+        {
+          "value": "ira",
+          "name": "Iranian Languages"
+        },
+        {
+          "value": "iro",
+          "name": "Iroquoian Languages"
+        },
+        {
+          "value": "ita",
+          "name": "Italiano"
+        },
+        {
+          "value": "it",
+          "name": "Italiano"
+        },
+        {
+          "value": "jav",
+          "name": "Basa Jawa"
+        },
+        {
+          "value": "jv",
+          "name": "Basa Jawa"
+        },
+        {
+          "value": "jbo",
+          "name": "Lojban"
+        },
+        {
+          "value": "jpn",
+          "name": "日本語 (にほんご／にっぽんご)"
+        },
+        {
+          "value": "ja",
+          "name": "日本語 (にほんご／にっぽんご)"
+        },
+        {
+          "value": "jpr",
+          "name": "Judeo-Persian"
+        },
+        {
+          "value": "jrb",
+          "name": "Judeo-Arabic"
+        },
+        {
+          "value": "kaa",
+          "name": "Kara-Kalpak"
+        },
+        {
+          "value": "kab",
+          "name": "Kabyle"
+        },
+        {
+          "value": "kac",
+          "name": "Jingpho"
+        },
+        {
+          "value": "kal",
+          "name": "Greenlandic"
+        },
+        {
+          "value": "kl",
+          "name": "Greenlandic"
+        },
+        {
+          "value": "kam",
+          "name": "Kamba"
+        },
+        {
+          "value": "kan",
+          "name": "ಕನ್ನಡ"
+        },
+        {
+          "value": "kn",
+          "name": "ಕನ್ನಡ"
+        },
+        {
+          "value": "kar",
+          "name": "Karen Languages"
+        },
+        {
+          "value": "kas",
+          "name": "كشميري‎"
+        },
+        {
+          "value": "ks",
+          "name": "كشميري‎"
+        },
+        {
+          "value": "kau",
+          "name": "Kanuri"
+        },
+        {
+          "value": "kr",
+          "name": "Kanuri"
+        },
+        {
+          "value": "kaw",
+          "name": "Kawi"
+        },
+        {
+          "value": "kaz",
+          "name": "Қазақ тілі"
+        },
+        {
+          "value": "kk",
+          "name": "Қазақ тілі"
+        },
+        {
+          "value": "kbd",
+          "name": "Kabardian"
+        },
+        {
+          "value": "kha",
+          "name": "Khasi"
+        },
+        {
+          "value": "khi",
+          "name": "Khoisan Languages"
+        },
+        {
+          "value": "khm",
+          "name": "Central Khmer"
+        },
+        {
+          "value": "km",
+          "name": "Central Khmer"
+        },
+        {
+          "value": "kho",
+          "name": "Khotanese"
+        },
+        {
+          "value": "kik",
+          "name": "Gikuyu"
+        },
+        {
+          "value": "ki",
+          "name": "Gikuyu"
+        },
+        {
+          "value": "kin",
+          "name": "Ikinyarwanda"
+        },
+        {
+          "value": "rw",
+          "name": "Ikinyarwanda"
+        },
+        {
+          "value": "kir",
+          "name": "Kirghiz"
+        },
+        {
+          "value": "ky",
+          "name": "Kirghiz"
+        },
+        {
+          "value": "kmb",
+          "name": "Kimbundu"
+        },
+        {
+          "value": "kok",
+          "name": "Konkani"
+        },
+        {
+          "value": "kom",
+          "name": "коми кыв"
+        },
+        {
+          "value": "kv",
+          "name": "коми кыв"
+        },
+        {
+          "value": "kon",
+          "name": "KiKongo"
+        },
+        {
+          "value": "kg",
+          "name": "KiKongo"
+        },
+        {
+          "value": "kor",
+          "name": "조선말 (朝鮮語)"
+        },
+        {
+          "value": "ko",
+          "name": "조선말 (朝鮮語)"
+        },
+        {
+          "value": "kos",
+          "name": "Kosraean"
+        },
+        {
+          "value": "kpe",
+          "name": "Kpelle"
+        },
+        {
+          "value": "krc",
+          "name": "Karachay-Balkar"
+        },
+        {
+          "value": "krl",
+          "name": "Karelian"
+        },
+        {
+          "value": "kro",
+          "name": "Kru Languages"
+        },
+        {
+          "value": "kru",
+          "name": "Kurukh"
+        },
+        {
+          "value": "kua",
+          "name": "Kuanyama"
+        },
+        {
+          "value": "kj",
+          "name": "Kuanyama"
+        },
+        {
+          "value": "kum",
+          "name": "Kumyk"
+        },
+        {
+          "value": "kur",
+          "name": "Kurdî"
+        },
+        {
+          "value": "ku",
+          "name": "Kurdî"
+        },
+        {
+          "value": "kut",
+          "name": "Kutenai"
+        },
+        {
+          "value": "lad",
+          "name": "Ladino"
+        },
+        {
+          "value": "lah",
+          "name": "Lahnda"
+        },
+        {
+          "value": "lam",
+          "name": "Lamba"
+        },
+        {
+          "value": "lao",
+          "name": "ພາສາລາວ"
+        },
+        {
+          "value": "lo",
+          "name": "ພາສາລາວ"
+        },
+        {
+          "value": "lat",
+          "name": "Latine"
+        },
+        {
+          "value": "la",
+          "name": "Latine"
+        },
+        {
+          "value": "lav",
+          "name": "Latviešu Valoda"
+        },
+        {
+          "value": "lv",
+          "name": "Latviešu Valoda"
+        },
+        {
+          "value": "lez",
+          "name": "Lezghian"
+        },
+        {
+          "value": "lim",
+          "name": "Limburgan"
+        },
+        {
+          "value": "li",
+          "name": "Limburgan"
+        },
+        {
+          "value": "lin",
+          "name": "Lingála"
+        },
+        {
+          "value": "ln",
+          "name": "Lingála"
+        },
+        {
+          "value": "lit",
+          "name": "Lietuvių Kalba"
+        },
+        {
+          "value": "lt",
+          "name": "Lietuvių Kalba"
+        },
+        {
+          "value": "lol",
+          "name": "Mongo"
+        },
+        {
+          "value": "loz",
+          "name": "Lozi"
+        },
+        {
+          "value": "ltz",
+          "name": "Letzeburgesch"
+        },
+        {
+          "value": "lb",
+          "name": "Letzeburgesch"
+        },
+        {
+          "value": "lua",
+          "name": "Luba-Lulua"
+        },
+        {
+          "value": "lub",
+          "name": ""
+        },
+        {
+          "value": "lu",
+          "name": ""
+        },
+        {
+          "value": "lug",
+          "name": "Ganda"
+        },
+        {
+          "value": "lg",
+          "name": "Ganda"
+        },
+        {
+          "value": "lui",
+          "name": "Luiseno"
+        },
+        {
+          "value": "lun",
+          "name": "Lunda"
+        },
+        {
+          "value": "luo",
+          "name": "Luo (Kenya And Tanzania)"
+        },
+        {
+          "value": "lus",
+          "name": "Lushai"
+        },
+        {
+          "value": "mac",
+          "name": "македонски јазик"
+        },
+        {
+          "value": "mkd",
+          "name": "македонски јазик"
+        },
+        {
+          "value": "mk",
+          "name": "македонски јазик"
+        },
+        {
+          "value": "mad",
+          "name": "Madurese"
+        },
+        {
+          "value": "mag",
+          "name": "Magahi"
+        },
+        {
+          "value": "mah",
+          "name": "Kajin M̧ajeļ"
+        },
+        {
+          "value": "mh",
+          "name": "Kajin M̧ajeļ"
+        },
+        {
+          "value": "mai",
+          "name": "Maithili"
+        },
+        {
+          "value": "mak",
+          "name": "Makasar"
+        },
+        {
+          "value": "mal",
+          "name": "മലയാളം"
+        },
+        {
+          "value": "ml",
+          "name": "മലയാളം"
+        },
+        {
+          "value": "man",
+          "name": "Mandingo"
+        },
+        {
+          "value": "mao",
+          "name": "Maori"
+        },
+        {
+          "value": "mri",
+          "name": "Maori"
+        },
+        {
+          "value": "mi",
+          "name": "Maori"
+        },
+        {
+          "value": "map",
+          "name": "Austronesian Languages"
+        },
+        {
+          "value": "mar",
+          "name": "Marathi"
+        },
+        {
+          "value": "mr",
+          "name": "Marathi"
+        },
+        {
+          "value": "mas",
+          "name": "Masai"
+        },
+        {
+          "value": "may",
+          "name": "Bahasa Melayu"
+        },
+        {
+          "value": "msa",
+          "name": "Bahasa Melayu"
+        },
+        {
+          "value": "ms",
+          "name": "Bahasa Melayu"
+        },
+        {
+          "value": "mdf",
+          "name": "Moksha"
+        },
+        {
+          "value": "mdr",
+          "name": "Mandar"
+        },
+        {
+          "value": "men",
+          "name": "Mende"
+        },
+        {
+          "value": "mga",
+          "name": "Irish Middle (900-1200)"
+        },
+        {
+          "value": "mic",
+          "name": "Mi'kmaq"
+        },
+        {
+          "value": "min",
+          "name": "Minangkabau"
+        },
+        {
+          "value": "mis",
+          "name": "Uncoded Languages"
+        },
+        {
+          "value": "mkh",
+          "name": "Mon-Khmer Languages"
+        },
+        {
+          "value": "mlg",
+          "name": "Malagasy Fiteny"
+        },
+        {
+          "value": "mg",
+          "name": "Malagasy Fiteny"
+        },
+        {
+          "value": "mlt",
+          "name": "Malti"
+        },
+        {
+          "value": "mt",
+          "name": "Malti"
+        },
+        {
+          "value": "mnc",
+          "name": "Manchu"
+        },
+        {
+          "value": "mni",
+          "name": "Manipuri"
+        },
+        {
+          "value": "mno",
+          "name": "Manobo Languages"
+        },
+        {
+          "value": "moh",
+          "name": "Mohawk"
+        },
+        {
+          "value": "mon",
+          "name": "монгол"
+        },
+        {
+          "value": "mn",
+          "name": "монгол"
+        },
+        {
+          "value": "mos",
+          "name": "Mossi"
+        },
+        {
+          "value": "mul",
+          "name": "Multiple Languages"
+        },
+        {
+          "value": "mun",
+          "name": "Munda Languages"
+        },
+        {
+          "value": "mus",
+          "name": "Creek"
+        },
+        {
+          "value": "mwl",
+          "name": "Mirandese"
+        },
+        {
+          "value": "mwr",
+          "name": "Marwari"
+        },
+        {
+          "value": "myn",
+          "name": "Mayan Languages"
+        },
+        {
+          "value": "myv",
+          "name": "Erzya"
+        },
+        {
+          "value": "nah",
+          "name": "Nahuatl Languages"
+        },
+        {
+          "value": "nai",
+          "name": "North American Indian Languages"
+        },
+        {
+          "value": "nap",
+          "name": "Neapolitan"
+        },
+        {
+          "value": "nau",
+          "name": "Ekakairũ Naoero"
+        },
+        {
+          "value": "na",
+          "name": "Ekakairũ Naoero"
+        },
+        {
+          "value": "nav",
+          "name": "Navaho"
+        },
+        {
+          "value": "nv",
+          "name": "Navaho"
+        },
+        {
+          "value": "nbl",
+          "name": "Ndebele"
+        },
+        {
+          "value": "nr",
+          "name": "Ndebele"
+        },
+        {
+          "value": "nde",
+          "name": "Ndebele"
+        },
+        {
+          "value": "nd",
+          "name": "Ndebele"
+        },
+        {
+          "value": "ndo",
+          "name": "Owambo"
+        },
+        {
+          "value": "ng",
+          "name": "Owambo"
+        },
+        {
+          "value": "nds",
+          "name": "Low"
+        },
+        {
+          "value": "nep",
+          "name": "नेपाली"
+        },
+        {
+          "value": "ne",
+          "name": "नेपाली"
+        },
+        {
+          "value": "new",
+          "name": "Nepal Bhasa"
+        },
+        {
+          "value": "nia",
+          "name": "Nias"
+        },
+        {
+          "value": "nic",
+          "name": "Niger-Kordofanian Languages"
+        },
+        {
+          "value": "niu",
+          "name": "Niuean"
+        },
+        {
+          "value": "nno",
+          "name": "Norwegian"
+        },
+        {
+          "value": "nn",
+          "name": "Norwegian"
+        },
+        {
+          "value": "nob",
+          "name": "Bokmål"
+        },
+        {
+          "value": "nb",
+          "name": "Bokmål"
+        },
+        {
+          "value": "nog",
+          "name": "Nogai"
+        },
+        {
+          "value": "non",
+          "name": "Norse"
+        },
+        {
+          "value": "nor",
+          "name": "Norsk"
+        },
+        {
+          "value": "no",
+          "name": "Norsk"
+        },
+        {
+          "value": "nqo",
+          "name": "N'Ko"
+        },
+        {
+          "value": "nso",
+          "name": "Northern Sotho"
+        },
+        {
+          "value": "nub",
+          "name": "Nubian Languages"
+        },
+        {
+          "value": "nwc",
+          "name": "Classical Nepal Bhasa"
+        },
+        {
+          "value": "nya",
+          "name": "ChiCheŵa"
+        },
+        {
+          "value": "ny",
+          "name": "ChiCheŵa"
+        },
+        {
+          "value": "nym",
+          "name": "Nyamwezi"
+        },
+        {
+          "value": "nyn",
+          "name": "Nyankole"
+        },
+        {
+          "value": "nyo",
+          "name": "Nyoro"
+        },
+        {
+          "value": "nzi",
+          "name": "Nzima"
+        },
+        {
+          "value": "oci",
+          "name": "Occitan (post 1500)"
+        },
+        {
+          "value": "oc",
+          "name": "Occitan (post 1500)"
+        },
+        {
+          "value": "oji",
+          "name": "Ojibwa"
+        },
+        {
+          "value": "oj",
+          "name": "Ojibwa"
+        },
+        {
+          "value": "ori",
+          "name": "ଓଡ଼ିଆ"
+        },
+        {
+          "value": "or",
+          "name": "ଓଡ଼ିଆ"
+        },
+        {
+          "value": "orm",
+          "name": "Afaan Oromoo"
+        },
+        {
+          "value": "om",
+          "name": "Afaan Oromoo"
+        },
+        {
+          "value": "osa",
+          "name": "Osage"
+        },
+        {
+          "value": "oss",
+          "name": "Ossetian"
+        },
+        {
+          "value": "os",
+          "name": "Ossetian"
+        },
+        {
+          "value": "ota",
+          "name": "Turkish Ottoman (1500-1928)"
+        },
+        {
+          "value": "oto",
+          "name": "Otomian Languages"
+        },
+        {
+          "value": "paa",
+          "name": "Papuan Languages"
+        },
+        {
+          "value": "pag",
+          "name": "Pangasinan"
+        },
+        {
+          "value": "pal",
+          "name": "Pahlavi"
+        },
+        {
+          "value": "pam",
+          "name": "Kapampangan"
+        },
+        {
+          "value": "pan",
+          "name": "Panjabi"
+        },
+        {
+          "value": "pa",
+          "name": "Panjabi"
+        },
+        {
+          "value": "pap",
+          "name": "Papiamento"
+        },
+        {
+          "value": "pau",
+          "name": "Palauan"
+        },
+        {
+          "value": "peo",
+          "name": "Persian Old (ca.600-400 B.C.)"
+        },
+        {
+          "value": "per",
+          "name": "فارسی"
+        },
+        {
+          "value": "fas",
+          "name": "فارسی"
+        },
+        {
+          "value": "fa",
+          "name": "فارسی"
+        },
+        {
+          "value": "phi",
+          "name": "Philippine Languages"
+        },
+        {
+          "value": "phn",
+          "name": "Phoenician"
+        },
+        {
+          "value": "pli",
+          "name": "Pali"
+        },
+        {
+          "value": "pi",
+          "name": "Pali"
+        },
+        {
+          "value": "pol",
+          "name": "Polski"
+        },
+        {
+          "value": "pl",
+          "name": "Polski"
+        },
+        {
+          "value": "pon",
+          "name": "Pohnpeian"
+        },
+        {
+          "value": "por",
+          "name": "Português"
+        },
+        {
+          "value": "pt",
+          "name": "Português"
+        },
+        {
+          "value": "pra",
+          "name": "Prakrit Languages"
+        },
+        {
+          "value": "pro",
+          "name": "Provençal Old (to 1500)"
+        },
+        {
+          "value": "pus",
+          "name": "Pashto"
+        },
+        {
+          "value": "ps",
+          "name": "Pashto"
+        },
+        {
+          "value": "qaa-qtz",
+          "name": "Reserved For Local Use"
+        },
+        {
+          "value": "que",
+          "name": "Kichwa"
+        },
+        {
+          "value": "qu",
+          "name": "Kichwa"
+        },
+        {
+          "value": "raj",
+          "name": "Rajasthani"
+        },
+        {
+          "value": "rap",
+          "name": "Rapanui"
+        },
+        {
+          "value": "rar",
+          "name": "Cook Islands Maori"
+        },
+        {
+          "value": "roa",
+          "name": "Romance Languages"
+        },
+        {
+          "value": "roh",
+          "name": "Rumantsch Grischun"
+        },
+        {
+          "value": "rm",
+          "name": "Rumantsch Grischun"
+        },
+        {
+          "value": "rom",
+          "name": "Romany"
+        },
+        {
+          "value": "rum",
+          "name": "Moldavian"
+        },
+        {
+          "value": "ron",
+          "name": "Moldavian"
+        },
+        {
+          "value": "ro",
+          "name": "Moldavian"
+        },
+        {
+          "value": "run",
+          "name": "Rundi"
+        },
+        {
+          "value": "rn",
+          "name": "Rundi"
+        },
+        {
+          "value": "rup",
+          "name": "Aromanian"
+        },
+        {
+          "value": "rus",
+          "name": "русский язык"
+        },
+        {
+          "value": "ru",
+          "name": "русский язык"
+        },
+        {
+          "value": "sad",
+          "name": "Sandawe"
+        },
+        {
+          "value": "sag",
+          "name": "Yângâ Tî Sängö"
+        },
+        {
+          "value": "sg",
+          "name": "Yângâ Tî Sängö"
+        },
+        {
+          "value": "sah",
+          "name": "Yakut"
+        },
+        {
+          "value": "sai",
+          "name": "South American Indian (Other)"
+        },
+        {
+          "value": "sal",
+          "name": "Salishan Languages"
+        },
+        {
+          "value": "sam",
+          "name": "Samaritan Aramaic"
+        },
+        {
+          "value": "san",
+          "name": "Sanskrit"
+        },
+        {
+          "value": "sa",
+          "name": "Sanskrit"
+        },
+        {
+          "value": "sas",
+          "name": "Sasak"
+        },
+        {
+          "value": "sat",
+          "name": "Santali"
+        },
+        {
+          "value": "scn",
+          "name": "Sicilian"
+        },
+        {
+          "value": "sco",
+          "name": "Scots"
+        },
+        {
+          "value": "sel",
+          "name": "Selkup"
+        },
+        {
+          "value": "sem",
+          "name": "Semitic Languages"
+        },
+        {
+          "value": "sga",
+          "name": "Irish Old (to 900)"
+        },
+        {
+          "value": "sgn",
+          "name": "Sign Languages"
+        },
+        {
+          "value": "shn",
+          "name": "Shan"
+        },
+        {
+          "value": "sid",
+          "name": "Sidamo"
+        },
+        {
+          "value": "sin",
+          "name": "Sinhala"
+        },
+        {
+          "value": "si",
+          "name": "Sinhala"
+        },
+        {
+          "value": "sio",
+          "name": "Siouan Languages"
+        },
+        {
+          "value": "sit",
+          "name": "Sino-Tibetan Languages"
+        },
+        {
+          "value": "sla",
+          "name": "Slavic Languages"
+        },
+        {
+          "value": "slo",
+          "name": "Slovenčina"
+        },
+        {
+          "value": "slk",
+          "name": "Slovenčina"
+        },
+        {
+          "value": "sk",
+          "name": "Slovenčina"
+        },
+        {
+          "value": "slv",
+          "name": "Slovenian"
+        },
+        {
+          "value": "sl",
+          "name": "Slovenian"
+        },
+        {
+          "value": "sma",
+          "name": "Southern Sami"
+        },
+        {
+          "value": "sme",
+          "name": "Davvisámegiella"
+        },
+        {
+          "value": "se",
+          "name": "Davvisámegiella"
+        },
+        {
+          "value": "smi",
+          "name": "Sami Languages"
+        },
+        {
+          "value": "smj",
+          "name": "Lule Sami"
+        },
+        {
+          "value": "smn",
+          "name": "Inari Sami"
+        },
+        {
+          "value": "smo",
+          "name": "Gagana Faa Samoa"
+        },
+        {
+          "value": "sm",
+          "name": "Gagana Faa Samoa"
+        },
+        {
+          "value": "sms",
+          "name": "Skolt Sami"
+        },
+        {
+          "value": "sna",
+          "name": "ChiShona"
+        },
+        {
+          "value": "sn",
+          "name": "ChiShona"
+        },
+        {
+          "value": "snd",
+          "name": "سنڌي، سندھی‎"
+        },
+        {
+          "value": "sd",
+          "name": "سنڌي، سندھی‎"
+        },
+        {
+          "value": "snk",
+          "name": "Soninke"
+        },
+        {
+          "value": "sog",
+          "name": "Sogdian"
+        },
+        {
+          "value": "som",
+          "name": "Af Soomaali"
+        },
+        {
+          "value": "so",
+          "name": "Af Soomaali"
+        },
+        {
+          "value": "son",
+          "name": "Songhai Languages"
+        },
+        {
+          "value": "sot",
+          "name": "Sotho"
+        },
+        {
+          "value": "st",
+          "name": "Sotho"
+        },
+        {
+          "value": "spa",
+          "name": "Castellano"
+        },
+        {
+          "value": "es",
+          "name": "Castellano"
+        },
+        {
+          "value": "srd",
+          "name": "Sardu"
+        },
+        {
+          "value": "sc",
+          "name": "Sardu"
+        },
+        {
+          "value": "srn",
+          "name": "Sranan Tongo"
+        },
+        {
+          "value": "srp",
+          "name": "српски језик"
+        },
+        {
+          "value": "sr",
+          "name": "српски језик"
+        },
+        {
+          "value": "srr",
+          "name": "Serer"
+        },
+        {
+          "value": "ssa",
+          "name": "Nilo-Saharan Languages"
+        },
+        {
+          "value": "ssw",
+          "name": "SiSwati"
+        },
+        {
+          "value": "ss",
+          "name": "SiSwati"
+        },
+        {
+          "value": "suk",
+          "name": "Sukuma"
+        },
+        {
+          "value": "sun",
+          "name": "Basa Sunda"
+        },
+        {
+          "value": "su",
+          "name": "Basa Sunda"
+        },
+        {
+          "value": "sus",
+          "name": "Susu"
+        },
+        {
+          "value": "sux",
+          "name": "Sumerian"
+        },
+        {
+          "value": "swa",
+          "name": "Kiswahili"
+        },
+        {
+          "value": "sw",
+          "name": "Kiswahili"
+        },
+        {
+          "value": "swe",
+          "name": "Svenska"
+        },
+        {
+          "value": "sv",
+          "name": "Svenska"
+        },
+        {
+          "value": "syc",
+          "name": "Classical Syriac"
+        },
+        {
+          "value": "syr",
+          "name": "Syriac"
+        },
+        {
+          "value": "tah",
+          "name": "Reo Tahiti"
+        },
+        {
+          "value": "ty",
+          "name": "Reo Tahiti"
+        },
+        {
+          "value": "tai",
+          "name": "Tai Languages"
+        },
+        {
+          "value": "tam",
+          "name": "தமிழ்"
+        },
+        {
+          "value": "ta",
+          "name": "தமிழ்"
+        },
+        {
+          "value": "tat",
+          "name": "Tatarça"
+        },
+        {
+          "value": "tt",
+          "name": "Tatarça"
+        },
+        {
+          "value": "tel",
+          "name": "తెలుగు"
+        },
+        {
+          "value": "te",
+          "name": "తెలుగు"
+        },
+        {
+          "value": "tem",
+          "name": "Timne"
+        },
+        {
+          "value": "ter",
+          "name": "Tereno"
+        },
+        {
+          "value": "tet",
+          "name": "Tetum"
+        },
+        {
+          "value": "tgk",
+          "name": "Toğikī"
+        },
+        {
+          "value": "tg",
+          "name": "Toğikī"
+        },
+        {
+          "value": "tgl",
+          "name": "Wikang Tagalog"
+        },
+        {
+          "value": "tl",
+          "name": "Wikang Tagalog"
+        },
+        {
+          "value": "tha",
+          "name": "ไทย"
+        },
+        {
+          "value": "th",
+          "name": "ไทย"
+        },
+        {
+          "value": "tib",
+          "name": "Tibetan"
+        },
+        {
+          "value": "bod",
+          "name": "Tibetan"
+        },
+        {
+          "value": "bo",
+          "name": "Tibetan"
+        },
+        {
+          "value": "tig",
+          "name": "Tigre"
+        },
+        {
+          "value": "tir",
+          "name": "ትግርኛ"
+        },
+        {
+          "value": "ti",
+          "name": "ትግርኛ"
+        },
+        {
+          "value": "tiv",
+          "name": "Tiv"
+        },
+        {
+          "value": "tkl",
+          "name": "Tokelau"
+        },
+        {
+          "value": "tlh",
+          "name": "Klingon"
+        },
+        {
+          "value": "tli",
+          "name": "Tlingit"
+        },
+        {
+          "value": "tmh",
+          "name": "Tamashek"
+        },
+        {
+          "value": "tog",
+          "name": "Tonga (Nyasa)"
+        },
+        {
+          "value": "ton",
+          "name": "Faka Tonga"
+        },
+        {
+          "value": "to",
+          "name": "Faka Tonga"
+        },
+        {
+          "value": "tpi",
+          "name": "Tok Pisin"
+        },
+        {
+          "value": "tsi",
+          "name": "Tsimshian"
+        },
+        {
+          "value": "tsn",
+          "name": "Setswana"
+        },
+        {
+          "value": "tn",
+          "name": "Setswana"
+        },
+        {
+          "value": "tso",
+          "name": "Xitsonga"
+        },
+        {
+          "value": "ts",
+          "name": "Xitsonga"
+        },
+        {
+          "value": "tuk",
+          "name": "Türkmen"
+        },
+        {
+          "value": "tk",
+          "name": "Türkmen"
+        },
+        {
+          "value": "tum",
+          "name": "Tumbuka"
+        },
+        {
+          "value": "tup",
+          "name": "Tupi Languages"
+        },
+        {
+          "value": "tur",
+          "name": "Türkçe"
+        },
+        {
+          "value": "tr",
+          "name": "Türkçe"
+        },
+        {
+          "value": "tut",
+          "name": "Altaic Languages"
+        },
+        {
+          "value": "tvl",
+          "name": "Tuvalu"
+        },
+        {
+          "value": "twi",
+          "name": "Twi"
+        },
+        {
+          "value": "tw",
+          "name": "Twi"
+        },
+        {
+          "value": "tyv",
+          "name": "Tuvinian"
+        },
+        {
+          "value": "udm",
+          "name": "Udmurt"
+        },
+        {
+          "value": "uga",
+          "name": "Ugaritic"
+        },
+        {
+          "value": "uig",
+          "name": "Uighur"
+        },
+        {
+          "value": "ug",
+          "name": "Uighur"
+        },
+        {
+          "value": "ukr",
+          "name": "українська"
+        },
+        {
+          "value": "uk",
+          "name": "українська"
+        },
+        {
+          "value": "umb",
+          "name": "Umbundu"
+        },
+        {
+          "value": "und",
+          "name": "Undetermined"
+        },
+        {
+          "value": "urd",
+          "name": "اردو"
+        },
+        {
+          "value": "ur",
+          "name": "اردو"
+        },
+        {
+          "value": "uzb",
+          "name": "Zbek"
+        },
+        {
+          "value": "uz",
+          "name": "Zbek"
+        },
+        {
+          "value": "vai",
+          "name": "Vai"
+        },
+        {
+          "value": "ven",
+          "name": "Tshivenḓa"
+        },
+        {
+          "value": "ve",
+          "name": "Tshivenḓa"
+        },
+        {
+          "value": "vie",
+          "name": "Tiếng Việt"
+        },
+        {
+          "value": "vi",
+          "name": "Tiếng Việt"
+        },
+        {
+          "value": "vol",
+          "name": "Volapük"
+        },
+        {
+          "value": "vo",
+          "name": "Volapük"
+        },
+        {
+          "value": "vot",
+          "name": "Votic"
+        },
+        {
+          "value": "wak",
+          "name": "Wakashan Languages"
+        },
+        {
+          "value": "wal",
+          "name": "Walamo"
+        },
+        {
+          "value": "war",
+          "name": "Waray"
+        },
+        {
+          "value": "was",
+          "name": "Washo"
+        },
+        {
+          "value": "wel",
+          "name": "Cymraeg"
+        },
+        {
+          "value": "cym",
+          "name": "Cymraeg"
+        },
+        {
+          "value": "cy",
+          "name": "Cymraeg"
+        },
+        {
+          "value": "wen",
+          "name": "Sorbian Languages"
+        },
+        {
+          "value": "wln",
+          "name": "Walon"
+        },
+        {
+          "value": "wa",
+          "name": "Walon"
+        },
+        {
+          "value": "wol",
+          "name": "Wollof"
+        },
+        {
+          "value": "wo",
+          "name": "Wollof"
+        },
+        {
+          "value": "xal",
+          "name": "Kalmyk"
+        },
+        {
+          "value": "xho",
+          "name": "IsiXhosa"
+        },
+        {
+          "value": "xh",
+          "name": "IsiXhosa"
+        },
+        {
+          "value": "yao",
+          "name": "Yao"
+        },
+        {
+          "value": "yap",
+          "name": "Yapese"
+        },
+        {
+          "value": "yid",
+          "name": "ייִדיש"
+        },
+        {
+          "value": "yi",
+          "name": "ייִדיש"
+        },
+        {
+          "value": "yor",
+          "name": "Yorùbá"
+        },
+        {
+          "value": "yo",
+          "name": "Yorùbá"
+        },
+        {
+          "value": "ypk",
+          "name": "Yupik Languages"
+        },
+        {
+          "value": "zap",
+          "name": "Zapotec"
+        },
+        {
+          "value": "zbl",
+          "name": "Bliss"
+        },
+        {
+          "value": "zen",
+          "name": "Zenaga"
+        },
+        {
+          "value": "zgh",
+          "name": "Standard Moroccan Tamazight"
+        },
+        {
+          "value": "zha",
+          "name": "Chuang"
+        },
+        {
+          "value": "za",
+          "name": "Chuang"
+        },
+        {
+          "value": "znd",
+          "name": "Zande Languages"
+        },
+        {
+          "value": "zul",
+          "name": "Zulu"
+        },
+        {
+          "value": "zu",
+          "name": "Zulu"
+        },
+        {
+          "value": "zun",
+          "name": "Zuni"
+        },
+        {
+          "value": "zxx",
+          "name": "No Linguistic Content"
+        },
+        {
+          "value": "zza",
+          "name": "Dimili"
+        }
+      ]
+    }
   }
 }

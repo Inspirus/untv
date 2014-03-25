@@ -61,6 +61,7 @@
     "peerflix": "~0.1.6",
     "feedparser": "~0.16.6",
     "cheerio": "~0.13.1",
-    "tmdbv3": "git+https://github.com/untv/node-tmdb.git"
+    "tmdbv3": "git+https://github.com/untv/node-tmdb.git",
+    "opensubtitles-client": "~1.1.0"
   }
 }
