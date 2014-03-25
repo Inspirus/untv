@@ -29,7 +29,10 @@ class Setting
       return @value = @default
 
     if not @is_toggle and value not in @options and "*" not in @options
-      throw new Error "'#{value}' is not a valid option"
+      # check for pretty name - value format
+      valid = no
+      @options.forEach (item) -> if value is item.value then valid = yes
+      if not valid then throw new Error "'#{value}' is not a valid option"
     
     if @persistence_key
       localStorage.setItem @persistence_key, JSON.stringify value: value

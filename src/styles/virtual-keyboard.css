@@ -3,6 +3,17 @@
 ** Author: Gordon Hall
 */
 
+@-webkit-keyframes select_item {
+  from {
+    font-weight: normal;
+    -webkit-transform: scale(0.9);
+  }
+  to {
+    font-weight: bold;
+    -webkit-transform: scale(1.1);
+  }
+}
+
 #vkeyboard {
   position: fixed;
   top: 0;
@@ -17,10 +28,9 @@
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(0,0,0,0.8);
-  border-bottom: 1px dashed rgba(255,255,255,0.4);
+  background: url('../assets/images/backgrounds/dark-texture.png') top center repeat;
   color: #fff;
-  box-shadow: 0 12px 12px rgba(0,0,0,0.5);
+  box-shadow: 0 12px 12px #000;
 }
 
 .vkeyboard-prompt p {
@@ -55,15 +65,12 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0,0,0,0.8);
-  border-top: 1px dashed rgba(255,255,255,0.4);
-  box-shadow: 0 -12px 12px rgba(0,0,0,0.5);
+  background: url('../assets/images/backgrounds/dark-texture.png') top center repeat;
+  box-shadow: 0 -12px 12px #000;
 }
 
 .vkeyboard dl {
-  border-top: 1px dashed rgba(255,255,255,0.4);
   padding: 0;
-  border-left: 1px dashed rgba(255,255,255,0.4);
   width: 490px;
   margin: auto;
 }
@@ -75,14 +82,21 @@
   height: 24px;
   vertical-align: middle;
   text-align: center;
-  background: #000;
   color: #fff;
   font-size: 24px;
   padding: 12px;
-  border-right: 1px dashed rgba(255,255,255,0.4);
+  -webkit-transform: scale(0.9);
+  opacity: 0.8;
+  border-radius: 40px;
+  line-height: 20px;
 }
 
 .vkeyboard .focused {
+  opacity: 1;
+  -webkit-transform: scale(1.1);
+  font-weight: bold;
+  -webkit-animation: select_item .1s;
+  box-shadow: inset 0 0 6px rgba(255,255,255,0.3);
   background: #fff;
   color: #000;
 }

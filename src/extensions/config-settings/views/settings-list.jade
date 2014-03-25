@@ -15,7 +15,7 @@ each extension, index in extensions
           else
             each option in setting.options
               - var has_pretty_name = (option.name && option.value)
-              if option === setting.default
+              if (option === setting.default) || has_pretty_name && (option.value === setting.default)
                 if has_pretty_name
                   span.setting-option(data-selected="true", data-value="#{option.value}") #{option.name}
                 else
