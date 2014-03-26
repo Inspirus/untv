@@ -137,16 +137,16 @@ module.exports = (env) ->
   ###
   Grid Event Handlers
   ###
-  detail_request = null
+  detail_requests = null
   grid.on "item_focused", (item) ->
     # kill any pending details request
-    do detail_request?.abort
+    do detail_requests?.abort
     movie_id = (env.gui.$ ".movie", item).data "id"
     imdb_id  = (env.gui.$ ".movie", item).data "imdb"
 
     if imdb_id
       details_view.addClass "loading"
-      getMovieDetails movie_id, imdb_id, (err, movieInfo) -> 
+      detail_requests = getMovieDetails movie_id, imdb_id, (err, movieInfo) -> 
         details_view.removeClass "loading"
         if err then return
         details = torrents.compileTemplate "details"
@@ -255,6 +255,7 @@ module.exports = (env) ->
       # when "right"
 
   getMovieDetails = (yifyId, imdbId, callback) ->
+    aborted  = no
     async.parallel [
       (next) -> env.movieDB.movie.info imdbId, next
       (next) -> torrents.get yifyId, next
@@ -265,7 +266,10 @@ module.exports = (env) ->
       base    = env.movieDB.config.images.base_url
       moviedb.backdrop_path = "#{base}w1280#{moviedb.backdrop_path}"
       moviedb.poster_path = "#{base}w342#{moviedb.poster_path}"
-      callback null, { yify, moviedb }
+      if not aborted then callback null, { yify, moviedb }
+    return {
+      abort: -> aborted = yes
+    }
 
   # show disclaimer after all bindings are set up
   env.notifier.notify env.manifest.name, disclaimer if config.show_disclaimer
