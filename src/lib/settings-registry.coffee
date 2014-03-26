@@ -28,16 +28,21 @@ class Setting
         localStorage.setItem @persistence_key, JSON.stringify value: @default
       return @value = @default
 
+    item = value: null
+
     if not @is_toggle and value not in @options and "*" not in @options
       # check for pretty name - value format
       valid = no
-      @options.forEach (item) -> if value is item.value then valid = yes
+      @options.forEach (opt) -> 
+        if value is opt.value
+          valid = yes
+          item  = opt
       if not valid then throw new Error "'#{value}' is not a valid option"
     
     if @persistence_key
       localStorage.setItem @persistence_key, JSON.stringify value: value
 
-    return @value = value
+    return @value = item.value or value
 
   persistTo: (key) ->
     if key then @persistence_key = key
