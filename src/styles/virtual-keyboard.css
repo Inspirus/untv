@@ -36,6 +36,18 @@
 .vkeyboard-prompt p {
   margin: 18px 36px;
   font-size: 22px;
+  float: left;
+}
+
+.vkeyboard-prompt .hints {
+  float: right;
+  margin: 6px 24px;
+}
+
+.vkeyboard-prompt .hints span {
+  display: block;
+  text-align: right;
+  font-size: 18px;
 }
 
 .vkeyboard-input {

@@ -1,6 +1,9 @@
 #vkeyboard
   .vkeyboard-prompt.animated.fadeInDown
     p #{hint}
+    .hints
+      span Press <strong>next</strong> to cycle keyboards.
+      span Press <strong>back</strong> to cancel input.
   .vkeyboard-input
     input.vkeyboard-value.mousetrap(type="text")
   .vkeyboard.animated.fadeInUp(data-type="alphanum")
