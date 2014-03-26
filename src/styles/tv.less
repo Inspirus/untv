@@ -3,6 +3,8 @@
 ** Author: Gordon Hall
 */
 
+* { cursor: none !important; }
+
 body {
   font-family: Ubuntu, Helvetica, sans-serif;
   position: fixed;
@@ -153,10 +155,33 @@ header.extension-header {
 }
 
 .instructions {
-  list-style-type: square;
+  list-style-type: none;
+  padding: 0;
+}
+
+.instructions li {
+  margin: 12px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.instructions li kbd {
+  font-size: 24px;
 }
 
 .instructions-ctr .col {
   float: left;
   width: 50%;
+}
+
+.remote-ip {
+  display: block;
+  font-size: 34px;
+  margin: auto;
+  text-align: center;
+  padding: 206px 12px 12px 12px;
+  background: url('../assets/images/smartphone.svg') top center no-repeat;
+  background-size: 170%;
+  height: 745px;
+  width: 566px;
 }

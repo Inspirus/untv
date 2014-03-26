@@ -170,6 +170,8 @@ class Player extends EventEmitter
     track = """<track kind="subtitles" src="file://#{path}" srclang="#{lang}">"""
     ($ @video).html track
 
+  removeSubtitleTrack: => ($ @video).html ""
+
   # set up playlist subset
   playlist:
     items: []

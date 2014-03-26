@@ -209,7 +209,10 @@ module.exports = (env) ->
       if config.use_subtitles
         env.player.loadSubtitles config.subtitles_language, movie_title, (err) ->
           if err
+            env.player.removeSubtitleTrack()
             return env.notifier.notify "Error", err, yes
+      else
+        env.player.removeSubtitleTrack()
 
       torrent.consume torrent_url
 

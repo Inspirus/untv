@@ -236,6 +236,7 @@ module.exports = (env) ->
       # pass `stream_url` to the player and show
       (env.gui.$ "#progress-loader").fadeOut(200)
       url = stream_info.stream_url
+      env.player.removeSubtitleTrack()
       env.player.play url, "video"
 
     torrent.consume src, true

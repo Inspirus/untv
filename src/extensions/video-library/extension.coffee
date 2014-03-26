@@ -131,6 +131,7 @@ module.exports = (env) ->
   # absolute path to the player instance
   movie_grid.on "item_selected", (item) ->
     movie_file_path = (env.gui.$ ".local-movie", item).attr "data-path"
+    env.player.removeSubtitleTrack()
     env.player.play movie_file_path, "video"
 
   # when navigating out of bounds left from movie grid, focus on the

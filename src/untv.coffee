@@ -90,6 +90,7 @@ showHelp = ->
   notifier.notify "Welcome to UnTV", content
 
 window.Mousetrap.bind "?", showHelp
+window.Mousetrap.bind "ctrl+f", -> win.toggleKioskMode()
 
 setTimeout ->
   if config.show_remote_instructions

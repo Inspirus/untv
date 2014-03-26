@@ -1,26 +1,30 @@
-if remote_ip
+section.left.remote
+  if remote_ip
+    p.
+      Use your smart phone as a remote by opening a web browser to:
+      <strong class="remote-ip">http://#{remote_ip}:#{remote_port}</strong>
+  else
+    p.
+      You aren't connected to a network. Connect to your local network to use 
+      your smart phone as remote.
+section.right.keyboard
   p.
-    To control UnTV using your smart phone, open a web browser and navigate to:
-    <strong>http://#{remote_ip}:#{remote_port}</strong>
-else
-  p.
-    UnTV is not connected to a network. Connect to your local network to use 
-    your phone as remote control.
-p.
-  You can also use your keyboard as a remote:
-.instructions-ctr
-  .col
-    ul.instructions
-      li <strong>Scroll Up:</strong> Up
-      li <strong>Scroll Left:</strong> Left
-      li <strong>Scroll Right:</strong> Right
-      li <strong>Scroll Down:</strong> Down
-      li <strong>Toggle Menu:</strong> Home
-      li  <strong>Go Back:</strong> Page Up
-  .col
-    ul.instructions
-      li <strong>Go Next:</strong> Page Down
-      li <strong>Select:</strong> Enter
-      li <strong>Pause/Play Player:</strong> Shift + Space
-      li <strong>Seek Player Previous:</strong> Shift + Left
-      li <strong>Seek Player Next:</strong> Shift + Right
+    You can also use your keyboard as a remote:
+  .instructions-ctr
+    .col
+      ul.instructions
+        li <kbd class="light">&#8593;</kbd> Move Up
+        li <kbd class="light">&#8592;</kbd> Move Left
+        li <kbd class="light">&#8594;</kbd> Move Right
+        li <kbd class="light">&#8595;</kbd> Move Down
+        li <kbd class="light">Home</kbd> Toggle Menu
+        li <kbd class="light">Page Up</kbd> Go Back
+        li <kbd class="light">Page Down</kbd> Go Next
+    .col
+      ul.instructions
+        li <kbd class="light">Enter</kbd> Select/Dismiss
+        li <kbd class="light">Shift</kbd> + <kbd class="light">Space</kbd> Pause/Play
+        li <kbd class="light">Shift</kbd> + <kbd class="light">Left</kbd> Seek Backward
+        li <kbd class="light">Shift</kbd> + <kbd class="light">Right</kbd> Seek Forward
+        li <kbd class="light">Ctrl</kbd> + <kbd class="light">F</kbd> Toggle Fullscreen
+        li <kbd class="light">?</kbd> Show Help

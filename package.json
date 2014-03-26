@@ -39,7 +39,7 @@
     "kiosk": false
   },
   "webkit": {
-    "plugin": true
+    "plugin": false
   },
   "dom_storage_quota": 6,
   "dependencies": {
