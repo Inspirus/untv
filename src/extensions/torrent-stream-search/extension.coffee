@@ -203,6 +203,15 @@ module.exports = (env) ->
       item_data    = (env.gui.$ ".movie", item).data()
       torrent_url  = item_data.torrent
       torrent_hash = item_data.hash
+      movie_title  = (env.gui.$ "h2 .movie-title", details_view).text()
+
+      window.alert movie_title
+
+      # load subtitles if we can and should
+      if config.use_subtitles
+        env.player.loadSubtitles config.subtitles_language, movie_title, (err) ->
+          if err
+            return env.notifier.notify "Error", err, yes
 
       torrent.consume torrent_url
 
@@ -213,7 +222,7 @@ module.exports = (env) ->
 
       torrent.on "timeout", ->
         (env.gui.$ "#progress-loader").fadeOut(200)
-        env.notifier.notify env.manifest.name, "Connection timed out.", true
+        env.notifier.notify env.manifest.name, "Connection timed out.", yes
 
       torrent.on "loading", ->
         # show loader
@@ -244,7 +253,6 @@ module.exports = (env) ->
         do grid.releaseFocus
         do menu.giveFocus
       # when "right"
-
 
   getMovieDetails = (yifyId, imdbId, callback) ->
     async.parallel [

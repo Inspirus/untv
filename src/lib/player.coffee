@@ -7,6 +7,12 @@ Defines a "player" instance that can be passed media for playback
 
 {EventEmitter} = require "events"
 $              = require "../vendor/jquery-2.0.3.js"
+opensubs       = require "opensubtitles-client"
+request        = require "request"
+zlib           = require "zlib"
+fs             = require "fs"
+path           = require "path"
+os             = require "os"
 
 class Player extends EventEmitter
   constructor: (@container, @remote) ->
@@ -26,6 +32,14 @@ class Player extends EventEmitter
     @video.src        = null
     @video.onprogress = @informTime
     @video.poster     = "/assets/images/loader.gif"
+
+    # subtitles api
+    @subtitles = 
+      api: opensubs.api
+      token: null
+
+    @subtitles.api.login().done (token) => 
+      @subtitles.token = token
 
     # listen for remote events
     do @subscribe
@@ -117,8 +131,36 @@ class Player extends EventEmitter
   ]
 
   showErrorMessage: (message) =>
-    @notifier?.notify "Player", message or "Failed to play media.", yes
+    @notifier?.notify "Player", message or "Failed to play media", yes
     @pause yes
+
+  loadSubtitles: (lang, movie, callback) =>
+    token = @subtitles.token
+    
+    if not token then return callback "Subtitles API not ready."
+    
+    @subtitles.api.search(token, lang, movie).done (results) =>
+      if results.length is 0 then return callback "Subtitles not found"
+      
+      first_match = results[0].SubDownloadLink
+      target_path = "#{os.tmpdir()}/#{path.basename(first_match, '.gz')}.srt"
+      input       = request first_match
+      gunzip      = zlib.createGunzip()
+      output      = fs.createWriteStream target_path
+
+      input.pipe(gunzip).pipe(output)
+
+      input.on "error", (err) => callback err
+      gunzip.on "error", (err) => callback err
+      output.on "error", (err) => callback err
+
+      output.on "finish", => 
+        @insertSubtitleTrack target_path, lang
+        callback()
+
+  insertSubtitleTrack: (path, lang) =>
+    track = """<track kind="subtitles" src="#{path}" srclang="#{lang}">"""
+    ($ @video).html track
 
   # set up playlist subset
   playlist:

@@ -1,7 +1,7 @@
 .movie-detail(data-id="#{yify.MovieID}", data-torrent="#{yify.TorrentUrl}", style="background-image:url('#{moviedb.backdrop_path}')")
   .movie-info
     h2 
-      | #{moviedb.title}
+      span.movie-title #{moviedb.title}
       span.mpaa #{yify.AgeRating}
     .screens
       img(src="#{moviedb.poster_path}")
