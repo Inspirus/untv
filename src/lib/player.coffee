@@ -13,25 +13,28 @@ zlib           = require "zlib"
 fs             = require "fs"
 path           = require "path"
 os             = require "os"
+videosubs      = require "../vendor/videosub.js"
 
 class Player extends EventEmitter
   constructor: (@container, @remote) ->
     # create audio player
     @audio            = window.document.createElement "audio"
     @audio.controls   = off
-    @audio.autoplay   = on
+    @audio.autoplay   = yes
     @audio.src        = null
     @audio.onprogress = @informTime
+    # @audio.is_playing = no
     
     # create video player
     @video            = window.document.createElement "video"
     @video.controls   = on
-    @video.autoplay   = on
+    @video.autoplay   = yes
     @video.height     = @height()
     @video.width      = @width()
     @video.src        = null
     @video.onprogress = @informTime
-    @video.poster     = "/assets/images/loader.gif"
+    # @video.is_playing = no
+    # @video.poster     = "/assets/images/loader.gif"
 
     # subtitles api
     @subtitles = 
@@ -48,6 +51,9 @@ class Player extends EventEmitter
     ($ window).on "resize", =>
       @video.height = @height()
       @video.width  = @width()
+
+    # ($ [@video, @audio]).on "playing", -> @is_playing = yes
+    # ($ [@video, @audio]).on "ended", -> @is_playing = no
 
     # handle errors
     ($ @video).on "error", (err) => do @showErrorMessage
@@ -70,12 +76,14 @@ class Player extends EventEmitter
       # inject the active player into the container
       if not (@container.children media_type).length
         @container.html @active_player
+        
     # otherwise go ahead and resume from where we left off if
     # there is an active media source
     if @active_player?.src
       do @container.show
       # play the media
-      do @active_player.play
+      videosubs(@container)
+      do @active_player.play #if not @active_player.is_playing
       @is_playing = yes
       # inform listeners
       @inform_interval = setInterval @informTime, 1000
@@ -159,7 +167,7 @@ class Player extends EventEmitter
         callback()
 
   insertSubtitleTrack: (path, lang) =>
-    track = """<track kind="subtitles" src="#{path}" srclang="#{lang}">"""
+    track = """<track kind="subtitles" src="file://#{path}" srclang="#{lang}">"""
     ($ @video).html track
 
   # set up playlist subset

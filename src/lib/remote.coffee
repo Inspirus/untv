@@ -81,8 +81,9 @@ class Remote extends EventEmitter
         if x_delta > 0 then @emit "scroll:left"
         else @emit "scroll:right"
 
-    # making a selection
-    $(window).bind "click", (event) => @emit "go:select"
+    # making a selection - let's keep this commented for now
+    # until we have better mouse support
+    # $(window).bind "click", (event) => @emit "go:select"
 
   interfaces: =>
     interfaces = do networkInterfaces

@@ -69,7 +69,7 @@ class TorrentStream extends EventEmitter
 
       @loadingInterval = setInterval => 
         @checkLoadingProgress @video_stream
-      , 300
+      , 100
 
       @waitingTimeout = setTimeout =>
         if @percent < 1 then @emit "timeout"

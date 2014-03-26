@@ -205,8 +205,6 @@ module.exports = (env) ->
       torrent_hash = item_data.hash
       movie_title  = (env.gui.$ "h2 .movie-title", details_view).text()
 
-      window.alert movie_title
-
       # load subtitles if we can and should
       if config.use_subtitles
         env.player.loadSubtitles config.subtitles_language, movie_title, (err) ->
@@ -218,11 +216,13 @@ module.exports = (env) ->
       torrent.on "error", (err) ->
         # show error message
         env.notifier.notify env.manifest.name, err, yes
+        dismissMovie()
         # do grid.giveFocus
 
       torrent.on "timeout", ->
         (env.gui.$ "#progress-loader").fadeOut(200)
         env.notifier.notify env.manifest.name, "Connection timed out.", yes
+        dismissMovie()
 
       torrent.on "loading", ->
         # show loader

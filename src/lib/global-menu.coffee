@@ -339,8 +339,8 @@ class GlobalMenu extends EventEmitter
   ###
   time: ->
     time   = new Date do Date.now
-    hour   = do time.getHours
-    mins   = do time.getMinutes
+    hour   = time.getHours() || 12
+    mins   = time.getMinutes()
     suffix = unless (hour > 11) then "AM" else "PM"
     # format time
     if hour > 12 then hour = hour - 12
