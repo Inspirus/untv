@@ -22,10 +22,10 @@ likely need to read `extending-the-remote.md`.
 * **Right Arrow**: Scroll Right
 * **Down Arrow**: Scroll Down
 * **Home**: Toggle Menu
-* **Page Up**: Go Back
-* **Page Down**: Go Next
+* **Esc**: Go Back
+* **Tab**: Go Next
 * **Enter**: Select
-* **Shift + Space**: Pause/Play Player
+* **Space**: Pause/Play Player
 * **Shift + Left Arrow**: Seek Player Previous
 * **Shift + Right Arrow**: Seek Player Next
 
