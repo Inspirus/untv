@@ -49,7 +49,7 @@
     },
     "subtitles_language": {
       "register": true,
-      "description": "Subtitles lanuage for movies",
+      "description": "Subtitles language for movies",
       "default": "eng",
       "options": [
         { "value": "spa", "name": "Spanish" },
