@@ -33,7 +33,7 @@ class TorrentSearch
       if response and response.statusCode is 200
         try 
           data = results: JSON.parse body
-          if callback then callback null, data?.MovieList
+          if callback then callback null, data.results.MovieList
         catch parseErr
           if callback then callback "Malformed response! Has your ISP blocked access?"
       else
@@ -44,8 +44,10 @@ class TorrentSearch
     request "#{@base_url}list.#{@data_type}?#{query}", (err, response, body) =>
       if response.statusCode is 200
         try 
+          console.log body
           data = results: JSON.parse body
-          if callback then callback null, data?.MovieList
+          console.log data
+          if callback then callback null, data.results.MovieList
         catch parseErr
           if callback then callback "Malformed response! Has your ISP blocked access?"
       else
