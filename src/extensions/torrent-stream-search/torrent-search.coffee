@@ -42,7 +42,7 @@ class TorrentSearch
   list: (data, callback) =>
     query = qstring.stringify data or {}
     request "#{@base_url}list.#{@data_type}?#{query}", (err, response, body) =>
-      if response.statusCode is 200
+      if response and response.statusCode is 200
         try 
           # console.log body
           data = results: JSON.parse body

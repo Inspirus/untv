@@ -41,8 +41,11 @@ class Player extends EventEmitter
       api: opensubs.api
       token: null
 
+    @subtitles.api.on "error", (err) -> 
+      # handler open subs error silently (for now)
+
     @subtitles.api.login().done (token) => 
-      @subtitles.token = token
+      @subtitles.token = token or null
 
     # listen for remote events
     do @subscribe
