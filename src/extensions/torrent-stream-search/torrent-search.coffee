@@ -74,4 +74,18 @@ class TorrentSearch
       else
         if typeof callback is "function" then callback err
 
+  calculateHealth: (seeds = 0, peers = 0) ->
+    ratio = if peers > 0 then (seeds / peers) else seeds
+    # options are: poor, okay, good, great
+    if seeds < 100 then "poor"
+    else if seeds > 100 and seeds < 200
+      if ratio > 5 then "good"
+      else if ratio > 3 then "okay"
+      else "poor"
+    else if seeds > 200
+      if ratio > 5 then "great"
+      else if ratio > 3 then "good"
+      else if ratio > 2 then "okay"
+      else "poor"
+
 module.exports = TorrentSearch
