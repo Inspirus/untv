@@ -267,8 +267,8 @@ module.exports = (env) ->
       moviedb = results[0]
       yify    = results[1]
       base    = env.movieDB.config.images.base_url
-      moviedb.backdrop_path = "#{base}w1280#{moviedb.backdrop_path}"
-      moviedb.poster_path = "#{base}w342#{moviedb.poster_path}"
+      moviedb?.backdrop_path = "#{base}w1280#{moviedb.backdrop_path}"
+      moviedb?.poster_path = "#{base}w342#{moviedb.poster_path}"
       if not aborted then callback null, { yify, moviedb }
     return {
       abort: -> aborted = yes
