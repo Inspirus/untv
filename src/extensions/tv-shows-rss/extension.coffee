@@ -140,13 +140,6 @@ module.exports = (env) ->
         show_list.releaseFocus()
         loadShowById (item.attr "data-show-id"), item.text()
 
-  # the back button should clear any search filter
-  # and take us back to today's schedule
-  env.remote.on "go:back", ->
-    (env.gui.$ "li", show_list_view).show()
-    (env.gui.$ "#episode-list").hide()
-    schedule_view.show()
-
   filterShowList = (text, show_list) ->
     text  = text.toLowerCase()
     items = (env.gui.$ "li", show_list_view).not ".search"
@@ -180,6 +173,13 @@ module.exports = (env) ->
 
             view = view info
             detail_view.html(view).removeClass "loading"
+
+      # the back button should clear any search filter
+      # and take us back to today's schedule
+      env.remote.once "go:back", ->
+        (env.gui.$ "li", show_list_view).show()
+        (env.gui.$ "#episode-list").hide()
+        schedule_view.show()
 
     feed.getFeed show_id, (err, episodes) ->
       if err then return env.notifier.notify env.manifest.name, err, yes
