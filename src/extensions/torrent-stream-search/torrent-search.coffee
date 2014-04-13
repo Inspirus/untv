@@ -7,11 +7,17 @@ request      = require "request"
 jade         = require "jade"
 fs           = require "fs"
 qstring      = require "querystring"
+Socks5Agent  = require "socks5-http-client/lib/Agent"
 localStorage = window.localStorage
 
 class TorrentSearch
-  constructor: ->
+  constructor: (@proxy) ->
     @history = []
+    console.log @proxy
+    if @proxy
+      unless @proxy.host and @proxy.port then @proxy = null
+
+    console.log @proxy
 
   base_url: "http://yts.im/api/" # should be good in the UK and Malaysia
   # other options are:
@@ -29,7 +35,15 @@ class TorrentSearch
     jade.compile @templates[template_name]
 
   upcoming: (callback) =>
-    request "#{@base_url}upcoming.#{@data_type}", (err, response, body) =>
+    options = 
+      url: "#{@base_url}upcoming.#{@data_type}"
+
+    if @proxy
+      options.agent = new Socks5Agent 
+        socksHost: @proxy.host
+        socksPort: @proxy.port
+
+    request options, (err, response, body) =>
       if response and response.statusCode is 200
         try 
           data = results: JSON.parse body
@@ -37,11 +51,20 @@ class TorrentSearch
         catch parseErr
           if callback then callback "Malformed response! Has your ISP blocked access?"
       else
-        if callback then callback "Failed to fetch movies!"
+        if @proxy then add_msg = "Is your proxy working?" else add_msg = ""
+        if callback then callback "Failed to fetch movies! #{add_msg}"
 
   list: (data, callback) =>
     query = qstring.stringify data or {}
-    request "#{@base_url}list.#{@data_type}?#{query}", (err, response, body) =>
+    options = 
+      url: "#{@base_url}list.#{@data_type}?#{query}"
+
+    if @proxy
+      options.agent = new Socks5Agent 
+        socksHost: @proxy.host
+        socksPort: @proxy.port
+
+    request options, (err, response, body) =>
       if response and response.statusCode is 200
         try 
           # console.log body
@@ -51,7 +74,8 @@ class TorrentSearch
         catch parseErr
           if callback then callback "Malformed response! Has your ISP blocked access?"
       else
-        if callback then callback "Failed to fetch movies!"
+        if @proxy then add_msg = "Is your proxy working?" else add_msg = ""
+        if callback then callback "Failed to fetch movies! #{add_msg}"
 
   # latest should get us the default sort 
   latest: (callback) => 

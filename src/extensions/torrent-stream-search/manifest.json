@@ -35,12 +35,7 @@
     ]
   },
   "config": {
-    "show_disclaimer": {
-      "register": true,
-      "default": false,
-      "is_toggle": true,
-      "description": "Always show copyright law disclaimer"
-    },
+    "show_disclaimer": false,
     "use_subtitles": {
       "register": true,
       "description": "Turn on subtitles",
@@ -68,6 +63,24 @@
         { "value": "fin", "name": "Finnish" },
         { "value": "bul", "name": "Bulgarian" }
       ]
+    },
+    "use_socks5": {
+      "register": true,
+      "default": false,
+      "is_toggle": true,
+      "description": "Route API requests through SOCKS5 proxy (like Tor)"
+    },
+    "socks5_host": {
+      "register": true,
+      "default": "127.0.0.1",
+      "description": "SOCKS5 proxy host",
+      "options": ["*"]
+    },
+    "socks5_port": {
+      "register": true,
+      "default": 9050,
+      "description": "SOCKS5 proxy port",
+      "options": ["*"]
     }
   }
 }

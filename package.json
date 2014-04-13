@@ -62,6 +62,7 @@
     "feedparser": "~0.16.6",
     "cheerio": "~0.13.1",
     "tmdbv3": "git+https://github.com/untv/node-tmdb.git",
-    "opensubtitles-client": "~1.1.0"
+    "opensubtitles-client": "~1.1.0",
+    "socks5-http-client": "~0.1.6"
   }
 }

@@ -25,7 +25,15 @@ module.exports = (env) ->
   torrent    = env.torrentStreamer
   config     = env.manifest.config
   disclaimer = (fs.readFileSync "#{__dirname}/disclaimer.html").toString()
-  
+  # re-instantiate TorrentSearch using socks5 config
+  if config.use_socks5
+    proxy =
+      host: config.socks5_host
+      port: config.socks5_port
+  else
+    proxy = null
+  torrents = new TorrentSearch proxy
+
   # get dom containers
   container    = (env.gui.$ "#torrent-list")
   details_view = (env.gui.$ "#torrent-details")

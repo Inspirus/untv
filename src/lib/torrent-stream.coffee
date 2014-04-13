@@ -12,6 +12,10 @@ nt             = require "nt"
 peerflix       = require "peerflix"
 path           = require "path"
 
+# keep a pointer to files we stream and create in 
+# temp director so we can destroy them upon exit
+temp = []
+
 class TorrentStream extends EventEmitter
   constructor: ->
     @on "error", =>
