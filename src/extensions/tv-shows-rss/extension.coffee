@@ -25,42 +25,52 @@ module.exports = (env) ->
   localStorage   = window.localStorage
   show_list_view = env.gui.$ "#shows-menu", env.view
   schedule_view  = env.gui.$ "#today-schedule", env.view
-  episode_view   = env.gui.$ "#episode-list", env.view
+  episode_view   = env.gui.$ "#episode-list .episode-list", env.view
+  detail_view    = env.gui.$ "#episode-list .details", env.view
 
   keyboard_config = 
     default: "alphanum"
     allow: [
       "alphanum"
       "symbols"
+      "numeric"
     ]
   keyboard = new env.gui.VirtualKeyboard env.remote, keyboard_config
 
   show_list_config  = 
-    adjust_y: (env.gui.$ "h2", show_list_view).outerHeight()
-    adjust_x: schedule_view.width()
+    adjust_y: 0 # (env.gui.$ "h2", show_list_view).outerHeight()
+    adjust_x: schedule_view.outerWidth()
     smart_scroll: yes 
     leave_decoration: yes
 
   episode_list_config  = 
-    adjust_y: (env.gui.$ "h2", episode_view).outerHeight()
-    adjust_x: show_list_view.width()
+    adjust_y: env.gui.$(window).height() / 2
+    adjust_x: show_list_view.outerWidth()
+    smart_scroll: yes 
+    leave_decoration: no
+
+  schedule_list_config  = 
+    adjust_y: 0
+    adjust_x: show_list_view.outerWidth()
     smart_scroll: yes 
     leave_decoration: no
 
   show_list     = null
   schedule_list = null
   episode_list  = null
+
   # get today's schedule
   feed.getSchedule (err, shows) ->
     view = jade.compile fs.readFileSync "#{__dirname}/views/schedule.jade"
     view = view shows: shows
     (env.gui.$ ".list-container", schedule_view).html view
     schedule_view.removeClass "loading"
+   
     # wire up navilist and shift focus
     schedule_list = new env.gui.NavigableList(
       (env.gui.$ "ul", schedule_view), 
       env.remote, 
-      episode_list_config
+      schedule_list_config
     )
 
     schedule_list.on "out_of_bounds", (data) ->
@@ -73,6 +83,19 @@ module.exports = (env) ->
       magnet   = item.attr "data-magnet"
       loadTorrentFromSources torrents
       # openTorrentStream magnet
+
+    schedule_list.on "item_focused", (item) ->
+      show_title = (env.gui.$ "strong", item).text()
+      env.movieDB.search.tv show_title, (err, data) ->
+        if err then return
+        if not data.results.length then return
+        id = data.results[0].id
+        env.movieDB.tv.info id, (err, info) ->
+          if err then return
+          base     = env.movieDB.config.images.base_url
+          backdrop = "#{base}w1280#{info.backdrop_path}"
+          schedule_view.css "background-image", "url('#{backdrop}')"
+      
 
   feed.on "error", (err) -> env.notifier.notify env.manifest.name, err, true
 
@@ -116,14 +139,8 @@ module.exports = (env) ->
             do show_list.unlock
             filterShowList text, show_list
       else
-        loadShowById item.attr "data-show-id"
-
-  # the back button should clear any search filter
-  # and take us back to today's schedule
-  env.remote.on "go:back", ->
-    (env.gui.$ "li", show_list_view).show()
-    episode_view.hide()
-    schedule_view.show()
+        show_list.releaseFocus()
+        loadShowById (item.attr "data-show-id"), item.text()
 
   filterShowList = (text, show_list) ->
     text  = text.toLowerCase()
@@ -136,24 +153,54 @@ module.exports = (env) ->
     if items.filter(":visible").length is 0 then items.show()
     else show_list.giveFocus items.filter(":visible").first().index()
 
-  loadShowById = (show_id) ->
+  loadShowById = (show_id, search_phrase) ->
     schedule_view.hide()
-    episode_view.html("").addClass("loading").show()
+    (env.gui.$ "#episode-list").addClass("loading").show()
+
+    # if we have a search phrase, lookup details
+    if search_phrase
+      env.movieDB.search.tv search_phrase, (err, data) ->
+        if err then return env.notifier.notify env.manifest.name, err, true
+        if data.results.length
+          id = data.results[0].id
+          env.movieDB.tv.info id, (err, info) ->
+            if err then return env.notifier.notify env.manifest.name, err, true
+            # use tv show data here
+            view = jade.compile fs.readFileSync "#{__dirname}/views/show-details.jade"
+            # add backdrop
+            base               = env.movieDB.config.images.base_url
+            info.backdrop_path = "#{base}w1280#{info.backdrop_path}"
+            info.poster_path   = "#{base}w342#{info.poster_path}"
+            (env.gui.$ "#episode-list").css "background-image", "url('#{info.backdrop_path}')"
+
+            view = view info
+            detail_view.html(view).removeClass "loading"
+
+      # the back button should clear any search filter
+      # and take us back to today's schedule
+      env.remote.once "go:back", ->
+        (env.gui.$ "li", show_list_view).show()
+        (env.gui.$ "#episode-list").hide()
+        schedule_view.show()
+
     feed.getFeed show_id, (err, episodes) ->
       if err then return env.notifier.notify env.manifest.name, err, yes
       view = jade.compile fs.readFileSync "#{__dirname}/views/episode-list.jade"
       view = view episodes: episodes
-      episode_view.html(view).removeClass "loading"
+      episode_view.html(view)
+      (env.gui.$ "#episode-list").removeClass("loading")
       # wire up navilist and shift focus
       episode_list = new env.gui.NavigableList(
-        (env.gui.$ "ul", episode_view), 
+        episode_view, 
         env.remote, 
         episode_list_config
       )
 
+      episode_list.giveFocus()
+
       episode_list.on "out_of_bounds", (data) ->
         if data.direction is "left"
-          schedule_list.releaseFocus()
+          episode_list.releaseFocus()
           show_list.giveFocus()
         
       episode_list.on "item_selected", (item) ->
@@ -167,12 +214,16 @@ module.exports = (env) ->
   openTorrentStream = (src) ->
     torrent.on "error", (err) ->
       env.notifier.notify env.manifest.name , err, yes
+      episode_list?.unlock()
+      schedule_list?.unlock()
 
     torrent.on "ready", (file_info) ->
       console.log "ready!"
       do torrent.stream
 
     torrent.on "timeout", ->
+      episode_list?.unlock()
+      schedule_list?.unlock()
       (env.gui.$ "#progress-loader").fadeOut(200)
       env.notifier.notify env.manifest.name, "Connection timed out.", true
 
@@ -189,11 +240,14 @@ module.exports = (env) ->
       # pass `stream_url` to the player and show
       (env.gui.$ "#progress-loader").fadeOut(200)
       url = stream_info.stream_url
+      env.player.removeSubtitleTrack()
       env.player.play url, "video"
 
     torrent.consume src, true
 
   loadTorrentFromSources = (sources) ->
+    episode_list?.lock()
+    schedule_list?.lock()
     env.notifier.notify env.manifest.name, "Preparing...", true
     attempts = sources.map (src) ->
       return (next) ->
@@ -201,7 +255,7 @@ module.exports = (env) ->
           # make sure the remote file is available
           req = request src
           req.on "response", (res) ->
-            if res.statusCode isnt 200 then next null, src
+            if res and res.statusCode isnt 200 then next null, src
             else openTorrentStream src
         catch err
           console.log err

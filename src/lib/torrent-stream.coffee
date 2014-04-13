@@ -9,8 +9,12 @@ fs             = require "fs"
 request        = require "request"
 os             = require "os"
 nt             = require "nt"
-peerflix       = require "peerflix"
+torstream      = require "torrent-stream"
 path           = require "path"
+
+# keep a pointer to files we stream and create in 
+# temp director so we can destroy them upon exit
+temp = []
 
 class TorrentStream extends EventEmitter
   constructor: ->
@@ -81,10 +85,10 @@ class TorrentStream extends EventEmitter
 
       @loadingInterval = setInterval => 
         @checkLoadingProgress @video_stream
-      , 300
+      , 100
 
       @waitingTimeout = setTimeout =>
-        if @percent < 100 then @emit "timeout"
+        if @percent < 1 then @emit "timeout"
       , @TIMEOUT_LENGTH
 
       @emit "loading"

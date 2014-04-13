@@ -8,15 +8,6 @@
   "stylesheets": [
     "styles/extension.css"
   ],
-  "config": {
-    "show_disclaimer": {
-      "register": true,
-      "default": false,
-      "is_toggle": true,
-      "description": "Always show copyright law disclaimer"
-    },
-    "use_test_data": false
-  },
   "locals": {
     "genres": [
       "Action",
@@ -42,5 +33,54 @@
       "War",
       "Western"
     ]
+  },
+  "config": {
+    "show_disclaimer": false,
+    "use_subtitles": {
+      "register": true,
+      "description": "Turn on subtitles",
+      "default": false,
+      "is_toggle": true
+    },
+    "subtitles_language": {
+      "register": true,
+      "description": "Subtitles language for movies",
+      "default": "eng",
+      "options": [
+        { "value": "spa", "name": "Spanish" },
+        { "value": "eng", "name": "English" },
+        { "value": "pob", "name": "Portuguese(Brazil)" },
+        { "value": "rum", "name": "Romanian" },
+        { "value": "tur", "name": "Turkish" },
+        { "value": "dut", "name": "Dutch" },
+        { "value": "fre", "name": "French" },
+        { "value": "ger", "name": "German" },
+        { "value": "lit", "name": "Lithuanian" },
+        { "value": "lat", "name": "Latvian" },
+        { "value": "hun", "name": "Hungarian" },
+        { "value": "rus", "name": "Russian" },
+        { "value": "ukr", "name": "Ukrainian" },
+        { "value": "fin", "name": "Finnish" },
+        { "value": "bul", "name": "Bulgarian" }
+      ]
+    },
+    "use_socks5": {
+      "register": true,
+      "default": false,
+      "is_toggle": true,
+      "description": "Route API requests through SOCKS5 proxy (like Tor)"
+    },
+    "socks5_host": {
+      "register": true,
+      "default": "127.0.0.1",
+      "description": "SOCKS5 proxy host",
+      "options": ["*"]
+    },
+    "socks5_port": {
+      "register": true,
+      "default": 9050,
+      "description": "SOCKS5 proxy port",
+      "options": ["*"]
+    }
   }
 }

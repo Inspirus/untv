@@ -1,6 +1,9 @@
 #vkeyboard
   .vkeyboard-prompt.animated.fadeInDown
     p #{hint}
+    .hints
+      span Press <strong>next</strong> to cycle keyboards.
+      span Press <strong>back</strong> to cancel input.
   .vkeyboard-input
     input.vkeyboard-value.mousetrap(type="text")
   .vkeyboard.animated.fadeInUp(data-type="alphanum")
@@ -85,6 +88,28 @@
       dd.space.two-wide(data-action="space")
       dd.delete(data-action="backspace")
       dd.return(data-action="submit")
+      dd.empty
+      dd.empty
+      dd.empty
+      dd.empty
+      dd.empty
+      dd.empty
+  .vkeyboard.animated.fadeInUp(data-type="numeric")
+    dl
+      dd 1
+      dd 2
+      dd 3
+      dd 4
+      dd 5
+      dd 6
+      dd 7
+      dd 8
+      dd 9
+      dd 0
+    dl
+      dd.delete(data-action="backspace")
+      dd.return(data-action="submit")
+      dd.empty
       dd.empty
       dd.empty
       dd.empty

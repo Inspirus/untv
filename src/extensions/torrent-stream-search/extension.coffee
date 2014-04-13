@@ -8,8 +8,10 @@ stream them directly to the global player instance
 
 fs            = require "fs"
 TorrentSearch = require "./torrent-search"
-torrents      = new TorrentSearch()
 localStorage  = window.localStorage
+torrents      = new TorrentSearch()
+async         = require "async"
+opensub       = require "opensubtitles-client"
 
 ###
 Pre-emptively Load Latest Movies and Cache
@@ -23,7 +25,15 @@ module.exports = (env) ->
   torrent    = env.torrentStreamer
   config     = env.manifest.config
   disclaimer = (fs.readFileSync "#{__dirname}/disclaimer.html").toString()
-  
+  # re-instantiate TorrentSearch using socks5 config
+  if config.use_socks5
+    proxy =
+      host: config.socks5_host
+      port: config.socks5_port
+  else
+    proxy = null
+  torrents = new TorrentSearch proxy
+
   # get dom containers
   container    = (env.gui.$ "#torrent-list")
   details_view = (env.gui.$ "#torrent-details")
@@ -135,20 +145,21 @@ module.exports = (env) ->
   ###
   Grid Event Handlers
   ###
-  detail_request = null
+  detail_requests = null
   grid.on "item_focused", (item) ->
     # kill any pending details request
-    do detail_request?.abort
+    do detail_requests?.abort
     movie_id = (env.gui.$ ".movie", item).data "id"
-    # show details
-    if movie_id
+    imdb_id  = (env.gui.$ ".movie", item).data "imdb"
+
+    if imdb_id
       details_view.addClass "loading"
-      detail_request = torrents.get movie_id, (err, data) ->
+      detail_requests = getMovieDetails movie_id, imdb_id, (err, movieInfo) -> 
         details_view.removeClass "loading"
         if err then return
         details = torrents.compileTemplate "details"
         # render view
-        (env.gui.$ "#torrent-details").html details data
+        (env.gui.$ "#torrent-details").html details movieInfo
       
       # if this is the last row in the grid, load the next 50 movies
       # but only if there is already more than one row loaded
@@ -200,17 +211,29 @@ module.exports = (env) ->
       item_data    = (env.gui.$ ".movie", item).data()
       torrent_url  = item_data.torrent
       torrent_hash = item_data.hash
+      movie_title  = (env.gui.$ "h2 .movie-title", details_view).text()
+
+      # load subtitles if we can and should
+      if config.use_subtitles
+        env.player.loadSubtitles config.subtitles_language, movie_title, (err) ->
+          if err
+            env.player.removeSubtitleTrack()
+            return env.notifier.notify "Error", err, yes
+      else
+        env.player.removeSubtitleTrack()
 
       torrent.consume torrent_url
 
       torrent.on "error", (err) ->
         # show error message
         env.notifier.notify env.manifest.name, err, yes
+        dismissMovie()
         # do grid.giveFocus
 
       torrent.on "timeout", ->
         (env.gui.$ "#progress-loader").fadeOut(200)
-        env.notifier.notify env.manifest.name, "Connection timed out.", true
+        env.notifier.notify env.manifest.name, "Connection timed out.", yes
+        dismissMovie()
 
       torrent.on "loading", ->
         # show loader
@@ -241,6 +264,23 @@ module.exports = (env) ->
         do grid.releaseFocus
         do menu.giveFocus
       # when "right"
+
+  getMovieDetails = (yifyId, imdbId, callback) ->
+    aborted  = no
+    async.parallel [
+      (next) -> env.movieDB.movie.info imdbId, next
+      (next) -> torrents.get yifyId, next
+    ], (err, results) ->
+      if err then return
+      moviedb = results[0]
+      yify    = results[1]
+      base    = env.movieDB.config.images.base_url
+      moviedb?.backdrop_path = "#{base}w1280#{moviedb.backdrop_path}"
+      moviedb?.poster_path = "#{base}w342#{moviedb.poster_path}"
+      if not aborted then callback null, { yify, moviedb }
+    return {
+      abort: -> aborted = yes
+    }
 
   # show disclaimer after all bindings are set up
   env.notifier.notify env.manifest.name, disclaimer if config.show_disclaimer

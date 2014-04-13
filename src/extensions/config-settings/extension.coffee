@@ -104,7 +104,8 @@ module.exports = (env) ->
     if target.length then target.attr "data-selected", yes
     else fallback?.attr "data-selected", yes
     # cast to number if we think we need to
-    value   = ($ "[data-selected=true]", item).text()
+    item    = ($ "[data-selected=true]", item)
+    value   = item.data("value") or item.text()
     num_val = Number value 
     value   = Number(value) unless Number.isNaN(num_val)
 

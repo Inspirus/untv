@@ -80,15 +80,17 @@ class NavigableGrid extends EventEmitter
       grid_item.html @render item
       # insert into grid
       target_row.append grid_item
+      # -- leave this commented for now, mouse support in this manner sucks
+      # -- and does more to confise the user than anything else
       # bind mouse
-      ($ "*", grid_item).hover (event) =>
-        unless ($ event.target).closest("li").hasClass @selected_item_classname
-          id = ($ event.target).closest("li").attr "data-navigrid-id"
-          ($ "li", @scroller).removeClass @selected_item_classname
-          # track focus
-          @last_item    = ($ event.target).closest("li").addClass @selected_item_classname
-          @last_item_id = @last_item.attr "data-navigrid-id"
-          @emit "item_focused", @last_item
+      # ($ "*", grid_item).hover (event) =>
+      #   unless ($ event.target).closest("li").hasClass @selected_item_classname
+      #     id = ($ event.target).closest("li").attr "data-navigrid-id"
+      #     ($ "li", @scroller).removeClass @selected_item_classname
+      #     # track focus
+      #     @last_item    = ($ event.target).closest("li").addClass @selected_item_classname
+      #     @last_item_id = @last_item.attr "data-navigrid-id"
+      #     @emit "item_focused", @last_item
 
     # temp hack for extra ul
     do @pruneRows
@@ -229,13 +231,15 @@ class NavigableGrid extends EventEmitter
     @remote.on "scroll:left", => do @prevItem if @focused
     @remote.on "go:select", => if @focused then @emit "item_selected", @getCurrentItem()
 
+    # -- leave this commented for now, mouse support in this manner sucks
+    # -- and does more to confise the user than anything else
     # setup mouse bindings
-    @container.bind "mouseenter", (event) => 
-      console.log "mouseenter"
-      @giveFocus()
-    @container.bind "mouseleave", (event) => 
-      console.log "mouseleave"
-      @releaseFocus()
+    # @container.bind "mouseenter", (event) => 
+    #   console.log "mouseenter"
+    #   @giveFocus()
+    # @container.bind "mouseleave", (event) => 
+    #   console.log "mouseleave"
+    #   @releaseFocus()
 
   selected_item_classname: "navigrid-selected"
   focused_area_classname: "navigrid-focused"

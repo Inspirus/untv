@@ -13,7 +13,7 @@
 }
 
 #shows-menu {
-  width: 30%;
+  width: 20%;
   height: 100%;
   position: fixed;
   top: 0;
@@ -32,7 +32,7 @@
 
 #today-schedule,
 #episode-list {
-  width: 70%;
+  width: 80%;
   height: 100%;
   position: fixed;
   top: 0;
@@ -50,8 +50,69 @@
   background-size: 140px;
 }
 
+#today-schedule {
+  background-repeat: no-repeat;
+  background-position: center center; 
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+#today-schedule .list-container {
+  position: fixed;
+  top: 0;
+  left: 20%;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.8);
+}
+
+#today-schedule .banner {
+  position: fixed;
+  top: 52px;
+  right: -86px;
+  width: 280px;
+  padding: 6px 12px;
+  text-align: center;
+  background: linear-gradient(to bottom, #c9de96 0%,#8ab66b 44%,#398235 100%);
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 0 2px 4px #398235;
+  -webkit-transform: rotate(45deg);
+  box-shadow: 3px 0 5px #000;
+}
+
+#today-schedule .episode-list {
+  top: 0 !important;
+}
+
 #episode-list {
   display: none;
+  background-repeat: no-repeat;
+  background-position: center center; 
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+#episode-list .details {
+  position: fixed;
+  top: 0;
+  left: 20%;
+  right: 0;
+  bottom: 50%;
+  background: rgba(0,0,0,0.95);
+}
+
+#episode-list .details p {
+  margin: 0 12px;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+#episode-list .details img {
+  float: left;
+  margin: 0 24px;
+  height: 70%;
+  box-shadow: 0 0 24px #000;
 }
 
 #shows-menu ul {
@@ -86,12 +147,26 @@
   background-size: 10px 20px;
 }
 
-.episodes {
-  list-style-type: none;
-  padding: 12px 24px;
+.episode-list-container {
+  position: fixed;
+  top: 50%;
+  left: 20%;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.95); 
 }
 
-.episodes li {
+.episode-list {
+  list-style-type: none;
+  padding: 12px 24px;
+  position: fixed;
+  top: 50%;
+  left: 20%;
+  right: 0;
+  bottom: 0;
+}
+
+.episode-list li {
   padding: 8px;
   font-size: 20px;
   -webkit-transform: scale(0.9);
@@ -99,21 +174,21 @@
   overflow: hidden;
 }
 
-.episodes li.navilist-selected {
+.episode-list li.navilist-selected {
   -webkit-transform: scale(1);
   opacity: 1;
   -webkit-animation: select_item .2s;
   border-left: 3px solid #fff;
 }
 
-.episodes li strong {
+.episode-list li strong {
   display: block;
   padding-bottom: 8px;
   margin-bottom: 8px;
   border-bottom: 1px dashed rgba(255,255,255,0.5);
 }
 
-.episodes li em {
+.episode-list li em {
   display: block;
   float: right;
   font-style: normal;

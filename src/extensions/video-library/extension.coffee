@@ -94,7 +94,7 @@ module.exports = (env) ->
     # now build an async map to add screenshots and metadata, before passing to
     # the movie grid's populate template
     async.mapLimit movies, conf.ffmpeg_procs, getMovieData, (err, list_data) ->
-      console.log list_data
+      # console.log list_data
       if err then return err
       # compile template and replace container contents
       movie_grid.populate list_data or [], grid_template
@@ -131,6 +131,7 @@ module.exports = (env) ->
   # absolute path to the player instance
   movie_grid.on "item_selected", (item) ->
     movie_file_path = (env.gui.$ ".local-movie", item).attr "data-path"
+    env.player.removeSubtitleTrack()
     env.player.play movie_file_path, "video"
 
   # when navigating out of bounds left from movie grid, focus on the

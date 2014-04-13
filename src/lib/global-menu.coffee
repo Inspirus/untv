@@ -18,6 +18,8 @@ dns                = require "dns"
 common             = require "./common"
 hat                = require "hat"
 TorrentStream      = require "./torrent-stream"
+config             = JSON.parse fs.readFileSync "#{__dirname}/../config.json"
+moviedb            = require "tmdbv3"
 
 class GlobalMenu extends EventEmitter
 
@@ -29,7 +31,8 @@ class GlobalMenu extends EventEmitter
     @window_height      = ($ window).height()
     @ready              = yes
     @settings           = new SettingsRegistry "untv_global"
-    
+    @movieDB            = moviedb.init(config.tmdb_api_key)
+
     do @subscribe
 
     ($ window).bind "resize", => 
@@ -156,6 +159,7 @@ class GlobalMenu extends EventEmitter
       view: null
       gui: gui
       torrentStreamer: @torrentStreamer
+      movieDB: @movieDB
     # apply overrides
     env = env extends overrides
     if env.manifest and env.manifest.privileged
@@ -288,8 +292,8 @@ class GlobalMenu extends EventEmitter
     @injectStyleSheets extension
 
     # animate the transition out of the current extension
-    ($ "*", container).removeClass "visible #{@menu_animation_in_classname}"
-    ($ "*", container).addClass "#{@menu_animation_out_classname}"
+    ($ "#app", container).removeClass "visible #{@menu_animation_in_classname}"
+    ($ "#app", container).addClass "#{@menu_animation_out_classname}"
     do container.hide
     # after the animation duration, execute the main extension script and
     # animate the extension view back into the main view
@@ -299,8 +303,8 @@ class GlobalMenu extends EventEmitter
         manifest: extension
         view: container
 
-      ($ "*", container).removeClass "#{@menu_animation_out_classname}"
-      ($ "*", container).addClass "visible #{@menu_animation_in_classname}"
+      ($ "#app", container).removeClass "#{@menu_animation_out_classname}"
+      ($ "#app", container).addClass "visible #{@menu_animation_in_classname}"
         
     ), 400
 
@@ -335,8 +339,8 @@ class GlobalMenu extends EventEmitter
   ###
   time: ->
     time   = new Date do Date.now
-    hour   = do time.getHours
-    mins   = do time.getMinutes
+    hour   = time.getHours() || 12
+    mins   = time.getMinutes()
     suffix = unless (hour > 11) then "AM" else "PM"
     # format time
     if hour > 12 then hour = hour - 12

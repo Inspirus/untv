@@ -53,19 +53,50 @@ class Remote extends EventEmitter
     keyboard = window.Mousetrap
     if "Mousetrap" not of window then return
     # setup keyboard bindings
-    keyboard.bind "up", => @emit "scroll:up"
-    keyboard.bind "down", => @emit "scroll:down"
-    keyboard.bind "left", => @emit "scroll:left"
-    keyboard.bind "right", => @emit "scroll:right"
-    keyboard.bind "enter", => @emit "go:select"
-    keyboard.bind "pageup", => @emit "go:back"
-    keyboard.bind "pagedown", => @emit "go:next"
-    # keyboard.bind "space", => @emit "go:select"
-    keyboard.bind "home", => @emit "menu:toggle"
-    # keyboard.bind "shift+enter", => @emit "player:toggle"
-    keyboard.bind "shift+space", => @emit "player:toggle"
-    keyboard.bind "shift+right", => @emit "player:next"
-    keyboard.bind "shift+left", => @emit "player:prev"
+    keyboard.bind "up", => 
+      @emit "scroll:up"
+
+    keyboard.bind "down", => 
+      @emit "scroll:down"
+
+    keyboard.bind "left", => 
+      @emit "scroll:left"
+
+    keyboard.bind "right", => 
+      @emit "scroll:right"
+
+    keyboard.bind "enter", => 
+      @emit "go:select"
+
+    keyboard.bind "pageup", => 
+      @emit "go:back"
+
+    keyboard.bind "pagedown", => 
+      @emit "go:next"
+
+    keyboard.bind "tab", (e) => 
+      e.preventDefault()
+      @emit "go:next"
+
+    keyboard.bind "home", => 
+      @emit "menu:toggle"
+
+    keyboard.bind "escape", => 
+      if @listeners("go:back").length then @emit "go:back" 
+      else @emit "menu:toggle"
+
+    keyboard.bind "space", => 
+      unless window.document.activeElement?.tagName is "INPUT"
+        @emit "player:toggle"
+
+    keyboard.bind "shift+space", => 
+      @emit "player:toggle"
+
+    keyboard.bind "shift+right", => 
+      @emit "player:next"
+      
+    keyboard.bind "shift+left", => 
+      @emit "player:prev"
 
   bindMousewheel: =>
     # swiping up and down
@@ -81,8 +112,9 @@ class Remote extends EventEmitter
         if x_delta > 0 then @emit "scroll:left"
         else @emit "scroll:right"
 
-    # making a selection
-    $(window).bind "click", (event) => @emit "go:select"
+    # making a selection - let's keep this commented for now
+    # until we have better mouse support
+    # $(window).bind "click", (event) => @emit "go:select"
 
   interfaces: =>
     interfaces = do networkInterfaces

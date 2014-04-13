@@ -3,6 +3,8 @@
 ** Author: Gordon Hall
 */
 
+* { cursor: none !important; }
+
 body {
   font-family: Ubuntu, Helvetica, sans-serif;
   position: fixed;
@@ -37,7 +39,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-image: url("../assets/images/backgrounds/red-pixels.png");
+  background-image: url("../assets/images/backgrounds/dark-texture.png");
   background-position: top center;
   background-repeat: repeat;
   background-color: #800000;
@@ -146,4 +148,40 @@ header.extension-header {
   color: #fff;
   z-index: 10;
   border-bottom: 1px solid rgba(255,255,255,0.8);
+}
+
+.instructions-ctr {
+  overflow: hidden;
+}
+
+.instructions {
+  list-style-type: none;
+  padding: 0;
+}
+
+.instructions li {
+  margin: 12px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.instructions li kbd {
+  font-size: 24px;
+}
+
+.instructions-ctr .col {
+  float: left;
+  width: 50%;
+}
+
+.remote-ip {
+  display: block;
+  font-size: 34px;
+  margin: auto;
+  text-align: center;
+  padding: 206px 12px 12px 12px;
+  background: url('../assets/images/smartphone.svg') top center no-repeat;
+  background-size: 170%;
+  height: 745px;
+  width: 566px;
 }

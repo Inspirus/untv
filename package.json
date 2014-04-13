@@ -2,7 +2,7 @@
   "main": "src/index.html",
   "name": "untv",
   "description": "drm-free media platform for home theater computers",
-  "version": "0.6.0",
+  "version": "0.8.2",
   "author": "Gordon Hall <gordon@gordonwritescode.com>",
   "repository": {
     "type": "git",
@@ -27,20 +27,21 @@
     "icon": "src/assets/images/untv-icon.png",
     "toolbar": false,
     "frame": true,
-    "width": 1024,
-    "height": 576,
+    "width": 1280,
+    "height": 640,
     "position": "center",
-    "min_height": 480,
+    "min_height": 640,
     "max_height": 1080,
-    "min_width": 640,
+    "min_width": 1280,
     "max_width": 1920,
     "fullscreen": false,
     "show": false,
     "kiosk": false
   },
   "webkit": {
-    "plugin": true
+    "plugin": false
   },
+  "dom_storage_quota": 6,
   "dependencies": {
     "coffee-script": "~1.6.3",
     "socket.io": "~0.9.16",
@@ -56,9 +57,12 @@
     "hat": "0.0.3",
     "nt": "~0.3.1",
     "musicmetadata": "~0.2.7",
-    "untv-remote": "git+https://github.com/untv/untv-remote.git#v0.5.1",
-    "peerflix": "~0.3.1",
+    "untv-remote": "git+https://github.com/untv/untv-remote.git#v0.5.2",
     "feedparser": "~0.16.6",
-    "cheerio": "~0.13.1"
+    "cheerio": "~0.13.1",
+    "tmdbv3": "git+https://github.com/untv/node-tmdb.git",
+    "opensubtitles-client": "~1.1.0",
+    "socks5-http-client": "~0.1.6",
+    "torrent-stream": "~0.6.0"
   }
 }

@@ -1,5 +1,6 @@
 {
   "remote_port": 8080,
   "show_remote_instructions": true,
-  "load_third_party_extensions": false
+  "load_third_party_extensions": false,
+  "tmdb_api_key": "01ecb8cbd6e7f9b28ab4ec7de8fee13c"
 }
