@@ -37,7 +37,11 @@ class FileSelector extends EventEmitter
     # stat all the contents
     @current_tree = @current_tree.map (file) =>
       # get file stats
-      stats = fs.statSync path.join @current_path, file
+      try  
+        stats = fs.statSync path.join @current_path, file
+      catch err
+        console.log(err)
+        return false
       # ignore types
       if (path.extname file) in @ignore_types then no
       # check if ignore all files (wildcard)
