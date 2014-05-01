@@ -30,7 +30,7 @@ player.notifier = notifier
 ###
 Register Remote Control Server
 ###
-remote.listen -> 
+remote.listen ->
   console.log "remote listening on port #{config.remote_port}"
 
 ###
@@ -55,7 +55,7 @@ checkExtension = (path) ->
     # check for manifest file and parse it
     if fs.existsSync "#{path}/manifest.json"
       return manifest = JSON.parse fs.readFileSync "#{path}/manifest.json"
-  null  
+  null
 
 registerExtension = (path) ->
   manifest = checkExtension path
@@ -66,7 +66,7 @@ registerExtension = (path) ->
 
 # Register Bundled Extensions
 for directory, index in bundled_ext_dir
-  registerExtension "#{bundled_ext_path}/#{directory}" 
+  registerExtension "#{bundled_ext_path}/#{directory}"
 
 # Register Third Party Extensions
 if config.load_third_party_extensions
@@ -82,7 +82,7 @@ do menu.open
 do win?.show
 
 # help notifications
-showHelp = -> 
+showHelp = ->
   view    = jade.compile fs.readFileSync "#{__dirname}/views/connect-remote.jade"
   content = view
     remote_ip: remote.interfaces()[0]?.address
@@ -95,8 +95,10 @@ window.Mousetrap.bind "ctrl+f", -> win.toggleKioskMode()
 setTimeout ->
   if config.show_remote_instructions
     if not remote.connected then showHelp()
-    remote.on "remote:connected", -> 
+    remote.on "remote:connected", ->
       do notifier.dismiss
       notifier.notify "Remote", "Connected!", yes
 
 , 1000
+
+module.exports = menu
