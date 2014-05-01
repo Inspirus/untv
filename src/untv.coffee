@@ -100,3 +100,5 @@ setTimeout ->
       notifier.notify "Remote", "Connected!", yes
 
 , 1000
+
+module.exports = menu
